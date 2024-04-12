@@ -21,6 +21,7 @@ public class EdithGlassesArmorRenderer extends GeoArmorRenderer<EdithGlassesArmo
     // Texture change if the glasses are working
     @Override
     public ResourceLocation getTextureLocation(EdithGlassesArmorItem animatable) {
+        //this.itemStack
         return super.getTextureLocation(animatable);
     }
 }

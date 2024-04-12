@@ -1,6 +1,5 @@
 package net.guwy.rsimm.content.entities.non_living.mark_1_flame;
 
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.IronmanArmorDataProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -96,17 +95,17 @@ public class Mark1FlameEntity extends Mob implements IAnimatable {
             if(list.get(i).getType().equals(EntityType.PLAYER)){
                 Player player = (Player) list.get(i);
 
-                if(!player.getLevel().isClientSide){
-                    player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
-                        if(armorData.getHasArmor()){
-                            if(armorData.getHelmetOpen()){
-                                player.setRemainingFireTicks(200);
-                            }
-                        }   else {
-                            player.setRemainingFireTicks(200);
-                        }
-                    });
-                }
+                //if(!player.getLevel().isClientSide){
+                //    player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
+                //        if(armorData.getHasArmor()){
+                //            if(armorData.getHelmetOpen()){
+                //                player.setRemainingFireTicks(200);
+                //            }
+                //        }   else {
+                //            player.setRemainingFireTicks(200);
+                //        }
+                //    });
+                //}
             }
         }
     }

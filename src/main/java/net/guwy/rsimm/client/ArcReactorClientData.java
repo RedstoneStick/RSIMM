@@ -1,6 +1,6 @@
 package net.guwy.rsimm.client;
 
-import net.guwy.rsimm.content.items.arc_reactors.ArcReactorItem;
+import net.guwy.rsimm.content.items.arc_reactors.GenericArcReactorItem;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -43,7 +43,7 @@ public class ArcReactorClientData {
             // gets the itemId on the same index as the uuid and assigns it to a item
             int index = ArcReactorClientData.playerUUID.indexOf(uuid);
 
-            ArcReactorItem arcReactorItem = (ArcReactorItem) Item.byId(ArcReactorClientData.itemId.get(index));
+            GenericArcReactorItem arcReactorItem = (GenericArcReactorItem) Item.byId(ArcReactorClientData.itemId.get(index));
             double percentage = ArcReactorClientData.energyPercentage.get(index);
 
             ItemStack itemStack = new ItemStack(arcReactorItem);

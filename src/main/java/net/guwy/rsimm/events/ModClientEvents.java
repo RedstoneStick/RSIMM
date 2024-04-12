@@ -23,12 +23,17 @@ public class ModClientEvents {
 
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event){
-            OnKeyInputHandler.init(event);
+            KeyInputHandler.KeyPress.init(event);
         }
 
         @SubscribeEvent
         public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
-            MouseScrollHandler.init(event);
+            KeyInputHandler.MouseScroll.init(event);
+        }
+
+        @SubscribeEvent
+        public static void onMouseScroll(InputEvent.MouseButton event){
+            //KeyInputHandler.MousePress.init(event);
         }
 
         @SubscribeEvent

@@ -2,11 +2,11 @@ package net.guwy.rsimm.content.items;
 
 import net.guwy.rsimm.config.RsImmServerConfigs;
 import net.guwy.rsimm.content.items.arc_reactors.AbstractArcReactorItem;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmEffects;
 import net.guwy.rsimm.index.RsImmItems;
 import net.guwy.rsimm.index.RsImmSounds;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlot;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.mechanics.capabilities.custom.ArcReactorSlot;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -87,7 +87,7 @@ public class ChestCutterItem extends Item {
     /** @param pPlayer player
      *  @param isSelfCaused displays a fail message if the hole can't be carved*/
     public static void tryAndCutHole(Player pPlayer, boolean isSelfCaused){
-        pPlayer.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        pPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
             // Hole Cutting On Yourself
             if(!arcReactor.hasArcReactorSlot()){
@@ -106,7 +106,7 @@ public class ChestCutterItem extends Item {
     }
 
     public static void tryAndStealReactor(Player player, Player targetPlayer){
-        targetPlayer.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(targetReactor -> {
+        targetPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(targetReactor -> {
             if(targetReactor.hasArcReactorSlot() && targetReactor.hasArcReactor()){
 
                 if(targetPlayer.getItemBySlot(EquipmentSlot.CHEST).isEmpty()){

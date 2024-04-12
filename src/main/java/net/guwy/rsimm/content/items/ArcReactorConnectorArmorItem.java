@@ -2,7 +2,7 @@ package net.guwy.rsimm.content.items;
 
 import net.guwy.rsimm.RsImm;
 import net.guwy.rsimm.compat.curios.Curios;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -49,7 +49,7 @@ public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnima
     public static void transferEnergy(Level level, Player player){
         if(!level.isClientSide){
             // gets the capabilities
-            player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 // gets each equipment slot 1 by 1 (includes hands)
                 for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
 

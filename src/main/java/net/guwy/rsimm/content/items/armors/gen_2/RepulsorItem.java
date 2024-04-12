@@ -3,8 +3,8 @@ package net.guwy.rsimm.content.items.armors.gen_2;
 import net.guwy.rsimm.content.entities.projectiles.RepulsorBeamEntity;
 import net.guwy.rsimm.enums.RepulsorAttackType;
 import net.guwy.rsimm.index.RsImmEntityTypes;
-import net.guwy.rsimm.mechanics.capabilities.forge.IItemEnergyContainer;
-import net.guwy.rsimm.mechanics.capabilities.forge.ItemEnergyStorageImpl;
+import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.IItemEnergyContainer;
+import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.ItemEnergyStorageImpl;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -183,7 +183,7 @@ public class RepulsorItem extends Item implements IItemEnergyContainer {
         return this.energyBuffer;
     }
     @Override
-    public int getEnergyRecieve() {
+    public int getEnergyReceive() {
         return this.energyBuffer;
     }
 }

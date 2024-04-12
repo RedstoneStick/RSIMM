@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class Mark1ArmorOverlay {
@@ -19,7 +20,7 @@ public class Mark1ArmorOverlay {
 
     public static final IGuiOverlay HELMET_OVERLAY = (((gui, poseStack, partialTick, screenWidth, screenHeight) -> {
         if(Minecraft.getInstance().options.getCameraType().equals(CameraType.FIRST_PERSON)){
-            if(Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).getItem().equals(RsImmArmorItems.MARK_1_HELMET.get())){
+            if(Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).getItem().equals(Items.BARRIER)){
                 Player player = Minecraft.getInstance().player;
                 ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
 

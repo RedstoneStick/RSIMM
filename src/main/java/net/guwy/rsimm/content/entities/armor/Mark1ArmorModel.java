@@ -1,7 +1,7 @@
 package net.guwy.rsimm.content.entities.armor;
 
 import net.guwy.rsimm.RsImm;
-import net.guwy.rsimm.content.items.armors.Mark1ArmorItem;
+import net.guwy.rsimm.content.items.armors.old.Mark1ArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

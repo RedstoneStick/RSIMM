@@ -1,7 +1,7 @@
 package net.guwy.rsimm.events.player_tick.content;
 
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmEffects;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -9,7 +9,7 @@ import net.minecraftforge.event.TickEvent;
 
 public class ReactorPoisoningHandler {
     public static void init(TickEvent.PlayerTickEvent event){
-        event.player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        event.player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
             if(arcReactor.hasArcReactorSlot()){
 
                 if(arcReactor.getPlayerArcReactorPoisoning() >= arcReactor.getMaximumPoisoning()){

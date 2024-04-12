@@ -1,6 +1,6 @@
 package net.guwy.rsimm.content.entities.armor;
 
-import net.guwy.rsimm.content.items.armors.Mark1ArmorItem;
+import net.guwy.rsimm.content.items.armors.old.Mark1ArmorItem;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 public class Mark1ArmorRenderer extends GeoArmorRenderer<Mark1ArmorItem> {

@@ -2,10 +2,10 @@ package net.guwy.rsimm.content.items.armors.gen_2;
 
 import net.guwy.rsimm.enums.KeyActionTypes;
 import net.guwy.rsimm.enums.KeyBinds;
-import net.guwy.rsimm.enums.SuitPowerSupplyTypes;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
-import net.guwy.rsimm.mechanics.capabilities.forge.IItemEnergyContainer;
-import net.guwy.rsimm.mechanics.capabilities.forge.ItemEnergyStorageImpl;
+import net.guwy.rsimm.content.items.armors.parts.power_supply.SuitPowerSupplyEnergyTypes;
+import net.guwy.rsimm.index.RsImmCapabilities;
+import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.IItemEnergyContainer;
+import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.ItemEnergyStorageImpl;
 import net.guwy.rsimm.mechanics.keybind.IIronmanKeybindCapableItem;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.ChatFormatting;
@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 
 public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, IIronmanKeybindCapableItem {
     int energyStorage, energyTransfer;
-    SuitPowerSupplyTypes suitPowerSupplyType;
+    SuitPowerSupplyEnergyTypes suitPowerSupplyType;
 
     int beamChargeTime, beamMaxDamage, beamRange, beamEnergyConsumptionPerTick;
     double beamHeat;
@@ -33,11 +33,11 @@ public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, I
 
     String FIRE_BEAM_TAG_KEY = "beam_fire", FIRE_BEAM_PREV_TAG_KEY = "beam_fire_previous";
 
-    public SuitPowerSupplyItem(Properties pProperties, SuitPowerSupplyTypes type, int energyStorage, int energyTransfer){
+    public SuitPowerSupplyItem(Properties pProperties, SuitPowerSupplyEnergyTypes type, int energyStorage, int energyTransfer){
         this(pProperties, type, energyStorage, energyTransfer, 0, 0, 0, 0, 0);
     }
 
-    public SuitPowerSupplyItem(Properties pProperties, SuitPowerSupplyTypes type, int energyStorage, int energyTransfer,
+    public SuitPowerSupplyItem(Properties pProperties, SuitPowerSupplyEnergyTypes type, int energyStorage, int energyTransfer,
                                int beamChargeTime, int beamMaxDamage, int beamRange, int beamEnergyConsumptionPerTick, double beamHeat) {
         super(pProperties);
         this.energyStorage = energyStorage;
@@ -60,16 +60,16 @@ public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, I
             for(int i = 0; i < inv.getSlots(); i++){
 
                 // do not process if the item is itself
-                if(i != Gen2IronManArmorItem.POWER_SUPPLY_SLOT){
+                if(i != 1){
                     // Extract item to process
                     ItemStack processItem = inv.extractItem(i, 64, false);
 
                     processItem.getCapability(ForgeCapabilities.ENERGY).ifPresent(e -> {
                         itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent(energy -> {
-                            player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+                            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
                                 // If the supply type is main draw energy from the main
-                                if(this.suitPowerSupplyType == SuitPowerSupplyTypes.MAIN && energy.getEnergyStored() > 0){
+                                if(this.suitPowerSupplyType == SuitPowerSupplyEnergyTypes.MAIN && energy.getEnergyStored() > 0){
                                     energy.extractEnergy(e.receiveEnergy(energy.extractEnergy(this.energyTransfer, true), false), false);
                                 }
                                 // If the main supply doesn't work and the player has enough energy in his reactor supply the energy from there
@@ -83,7 +83,7 @@ public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, I
                                     }
                                 }
                                 // If the supply type is emergency and the player doesn't have enough power (<5%), supply the power
-                                else if(this.suitPowerSupplyType == SuitPowerSupplyTypes.EMERGENCY &&
+                                else if(this.suitPowerSupplyType == SuitPowerSupplyEnergyTypes.EMERGENCY &&
                                         0.05 > ((double) arcReactor.getArcReactorEnergy() / arcReactor.getArcReactorEnergyCapacity())){
                                     energy.extractEnergy(e.receiveEnergy(energy.extractEnergy(this.energyTransfer, true), false), false);
                                 }
@@ -123,7 +123,7 @@ public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, I
 
     @Override
     public boolean keybindInput(Player player, ItemStack itemStack, KeyActionTypes keyActionType, KeyBinds keyBind) {
-        boolean res = IIronmanKeybindCapableItem.super.keybindInput(player, itemStack, keyActionType, keyBind);
+        boolean res = false;
 
         // if the charge time is greater than 0 (to check if the supply can fire a beam), try to charge and fire beam
         if(this.beamChargeTime > 0){
@@ -167,7 +167,7 @@ public class SuitPowerSupplyItem extends Item implements IItemEnergyContainer, I
         return this.energyTransfer;
     }
     @Override
-    public int getEnergyRecieve() {
+    public int getEnergyReceive() {
         return this.energyTransfer;
     }
 }

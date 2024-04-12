@@ -1,6 +1,5 @@
 package net.guwy.rsimm.events.player_tick;
 
-import net.guwy.rsimm.events.player_tick.content.ArmorNBTWriteHandler;
 import net.guwy.rsimm.events.player_tick.content.ChestSlotCheck;
 import net.guwy.rsimm.events.player_tick.content.ReactorLoadHandler;
 import net.guwy.rsimm.events.player_tick.content.ReactorUtilization;
@@ -15,7 +14,6 @@ public class PlayerTickEventOrganizer {
             ReactorLoadHandler.init(event);
             ReactorUtilization.init(event);
             //ReactorPoisoningHandler.init(event);
-            ArmorNBTWriteHandler.init(event);
 
 
             //Player player = event.player;

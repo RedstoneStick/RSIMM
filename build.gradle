@@ -214,7 +214,7 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.39')
 
-    implementation fg.deobf("curse.maven:stickyfoundation-811241:4658634")
+    implementation fg.deobf("curse.maven:stickyfoundation-811241:4999298")
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency

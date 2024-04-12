@@ -2,9 +2,9 @@ package net.guwy.rsimm.content.effects;
 
 import net.guwy.rsimm.config.RsImmServerConfigs;
 import net.guwy.rsimm.config.enums.ArcReactorSideEffects;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmEffects;
 import net.guwy.rsimm.index.RsImmSounds;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -36,7 +36,7 @@ public class MissingReactorEffect extends MobEffect {
 
         // kill the player before the duration ends
         if(pLivingEntity.getEffect(RsImmEffects.MISSING_REACTOR.get()).getDuration() <= 1){
-            player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 if(arcReactor.hasArcReactorSlot()){
                     pLivingEntity.hurt(new DamageSource("missing_reactor"),Float.MAX_VALUE);
                 }
@@ -45,7 +45,7 @@ public class MissingReactorEffect extends MobEffect {
         }
 
         // Remove effect if the a working arc reactor is detected
-        player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
             if (arcReactor.hasArcReactorSlot()) {
                 if ((arcReactor.hasArcReactor()) && (arcReactor.getArcReactorEnergy() > 0)) {
 

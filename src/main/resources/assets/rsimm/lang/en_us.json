@@ -19,7 +19,7 @@
     "item.rsimm.dev_wand_1": "Dev Wand 1 (Fire Repulsor Shot)",
     "item.rsimm.dev_wand_2": "Dev Wand 2 (Remove Arc Reactor Slot)",
     "item.rsimm.dev_wand_3": "Dev Wand 3 (Item Storing Another Item Test)",
-    "item.rsimm.dev_wand_4": "Dev Wand 4 (Assemble mark 2 armor on player (WIP))",
+    "item.rsimm.dev_wand_4": "Dev Wand 4 (Assemble test armor on player)",
     "item.rsimm.dev_wand_5": "Dev Wand 5 (Sound Test)",
     "item.rsimm.dev_wand_6": "Dev Wand 6 ()",
 
@@ -52,15 +52,6 @@
     "item.rsimm.mark_1_ammo_kit": "Mark 1 Ammo Kit",
 
     "item.rsimm.mark_2_hull": "Mark 2 Hull",
-    "tooltip.rsimm.mark_2_hull": "§8Press [Shift] to display stats",
-    "tooltip.rsimm.mark_2_hull.s.1": "§8Press §7[Shift] §8to display stats",
-    "tooltip.rsimm.mark_2_hull.s.2": "§7 -Durability: ",
-    "tooltip.rsimm.mark_2_hull.s.3": "§7 -Max Speed: ",
-    "tooltip.rsimm.mark_2_hull.s.4": "§7 -Drag Coefficient: -",
-    "tooltip.rsimm.mark_2_hull.s.5": "§7 -Overheat Temp: ",
-    "tooltip.rsimm.mark_2_hull.s.6": "§7 -Freezing Temp: ",
-    "tooltip.rsimm.mark_2_hull.s.7": "§7 -Freezing Rate: ",
-    "tooltip.rsimm.mark_2_hull.s.8": "§7 -Temperature Exchange Rate: ",
 
 
 
@@ -157,11 +148,11 @@
 
 
 
-    "arc_reactor.rsimm.energy": "Energy: ",
-    "arc_reactor.rsimm.energy_output": "Energy Output: ",
-    "arc_reactor.rsimm.idle_drain": "Idle Drain: ",
-    "arc_reactor.rsimm.posion_factor": "Poison Factor: ",
+    "arc_reactor.rsimm.energy": "Energy",
+    "arc_reactor.rsimm.energy_output": "Energy Output",
+    "arc_reactor.rsimm.idle_drain": "Idle Drain",
     "arc_reactor.rsimm.depleted": "It's useless",
+    "arc_reactor.rsimm.rechargeable": "Can be recharged",
     "arc_reactor.rsimm.uncharged.charge": "Charge: ",
     "arc_reactor.rsimm.uncharged.charge_loss": "Charge Loss: ",
     "arc_reactor.rsimm.uncharged.instructions.1": "You need to charge this in a ",
@@ -172,6 +163,26 @@
     "arc_reactor.rsimm.chat_display_title": "--| Arc Reactor Status |--",
     "arc_reactor.rsimm.chat_display_name": "Model: ",
 
+
+
+
+
+    "tooltip.rsimm.armor_part.durability": "Durability",
+    "tooltip.rsimm.armor_part.speed_reduction": "Thrust Reduction",
+    "tooltip.rsimm.armor_part.energy.storage": "Energy",
+    "tooltip.rsimm.armor_part.energy.transfer": "Energy Transfer",
+    "tooltip.rsimm.armor_part.energy.extract": "Energy Extract",
+    "tooltip.rsimm.armor_part.energy.receive": "Energy Receive",
+    "tooltip.rsimm.armor_part.hull.max_speed": "Max Speed",
+    "tooltip.rsimm.armor_part.hull.drag_at_sea_level": "Drag at Sea Level",
+    "tooltip.rsimm.armor_part.hull.overheat_temp": "Overheat Temp",
+    "tooltip.rsimm.armor_part.hull.freeze_temp": "Freeze Temp",
+    "tooltip.rsimm.armor_part.hull.freeze_speed": "Freeze Speed",
+    "tooltip.rsimm.armor_part.hull.temp_exchange_rate": "Temp Exchange Rate",
+    "tooltip.rsimm.armor_part.hull.min_hull_integrity_durability_percent": "Min Durability for Air-tightness",
+    "tooltip.rsimm.armor_part.hull.max_hull_integrity_durability_percent": "Max Durability for Air-tightness",
+    "tooltip.rsimm.armor_part.hull.brake_drag": "Brake Drag",
+    "tooltip.rsimm.armor_part.hull.brake_temp_exchange_bonus": "Brake Temp Exchange Bonus",
 
 
     "tooltip.rsimm.generic.energy": "Energy"

@@ -1,6 +1,6 @@
 package net.guwy.rsimm.events.player_tick.content;
 
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
@@ -10,7 +10,7 @@ public class ReactorLoadHandler {
         Player player = event.player;
         Level level = player.level;
 
-        player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
             arcReactor.removeArcReactorEnergy(arcReactor.getEnergyLoad());
             arcReactor.setEnergyLastLoad(arcReactor.getEnergyLoad());

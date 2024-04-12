@@ -2,9 +2,10 @@ package net.guwy.rsimm.content.network_packets;
 
 import net.guwy.rsimm.enums.KeyActionTypes;
 import net.guwy.rsimm.enums.KeyBinds;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmSounds;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlot;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.mechanics.capabilities.custom.ArcReactorSlot;
+import net.guwy.rsimm.mechanics.keybind.IIronmanKeybindCapableArmor;
 import net.guwy.rsimm.mechanics.keybind.IIronmanKeybindCapableItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -56,15 +57,19 @@ public class KeyBindingGenericC2SPacket {
             if(itemStack.getItem() instanceof IIronmanKeybindCapableItem item && !stop){
                 stop = !item.keybindInput(player, itemStack, this.keyActionType, this.keyBind);
             }
-            itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+            itemStack = player.getItemInHand(InteractionHand.OFF_HAND);
             if(itemStack.getItem() instanceof IIronmanKeybindCapableItem item && !stop){
                 stop = !item.keybindInput(player, itemStack, this.keyActionType, this.keyBind);
             }
 
-            // Second look for functionality on the worn chestplate
-            itemStack = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(itemStack.getItem() instanceof IIronmanKeybindCapableItem item && !stop){
-                stop = !item.keybindInput(player, itemStack, this.keyActionType, this.keyBind);
+            // Second look for functionality on the worn armor (only 1 piece of your armor should handle this if you have a set)
+            for(EquipmentSlot equipmentSlot : EquipmentSlot.values()){
+                if(equipmentSlot.getType() == EquipmentSlot.Type.ARMOR){
+                    itemStack = player.getItemBySlot(equipmentSlot);
+                    if(itemStack.getItem() instanceof IIronmanKeybindCapableArmor item && !stop){
+                        stop = !item.keybindArmorInput(player, itemStack, this.keyActionType, this.keyBind, equipmentSlot);
+                    }
+                }
             }
 
             // Lastly look for functionality on custom
@@ -91,7 +96,7 @@ public class KeyBindingGenericC2SPacket {
     private void sendArcReactorEnergyMesage(Player player){
         Level level = player.getLevel();
 
-        player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
             if(arcReactor.hasArcReactor()){
 
                 Component titleText = Component.translatable("arc_reactor.rsimm.chat_display_title").withStyle(ChatFormatting.GOLD);

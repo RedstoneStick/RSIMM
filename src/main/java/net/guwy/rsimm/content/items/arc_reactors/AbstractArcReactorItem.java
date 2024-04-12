@@ -1,10 +1,11 @@
 package net.guwy.rsimm.content.items.arc_reactors;
 
+import net.guwy.rsimm.RsImm;
 import net.guwy.rsimm.config.RsImmServerConfigs;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmSounds;
-import net.guwy.rsimm.mechanics.capabilities.forge.IItemExtendedEnergyContainer;
-import net.guwy.rsimm.mechanics.capabilities.forge.ItemExtendedEnergyStorageImpl;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.mechanics.capabilities.forge.extended_energy_item.IItemExtendedEnergyContainer;
+import net.guwy.rsimm.mechanics.capabilities.forge.extended_energy_item.ItemExtendedEnergyStorageImpl;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -43,28 +44,38 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
      * - depletedItem()
      */
 
+    long maxEnergy;
+    long energyOutput, energyInput;
+    int idleDrain;
+    ResourceLocation depletedName;
+    ResourceLocation overlayTexture;
 
-    public AbstractArcReactorItem(Properties pProperties) {
-        super(pProperties);
+    /**
+     * @param pProperties Item Properties
+     * @param maxEnergy Energy capacity of the arc reactor
+     * @param energyOutput Energy Output (/tick) of the reactor
+     * @param energyInput Energy Input (/tick) of the reactor
+     * @param idleDrain Energy Output (/second) of the reactor
+     * @param depletedName Display name for the reactor when it depletes (null = use the charged name)
+     * @param overlayTexture 2D sprite that's gonna be used for hud images (null = use mk2 reactor sprite)
+     */
+    public AbstractArcReactorItem(Properties pProperties,
+                                  long maxEnergy, long energyOutput, long energyInput, int idleDrain,
+                                  @Nullable ResourceLocation depletedName, @Nullable ResourceLocation overlayTexture) {
+        super(pProperties.stacksTo(1));
+        this.maxEnergy = maxEnergy;
+        this.energyOutput = energyOutput;
+        this.energyInput = energyInput;
+        this.idleDrain = idleDrain;
+        this.depletedName = depletedName;
+
+        if(overlayTexture != null) this.overlayTexture = overlayTexture;
+        else this.overlayTexture = new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/edith_glasses_overlay.png");
     }
 
-
-
-    public abstract String displayName();
-
-    public abstract long maxEnergy();
-
-    public abstract long energyOutput();
-
-    public abstract int idleDrain();
-
-    public abstract int poisonFactor();
-
-    @Nullable
-    public abstract ResourceLocation depletedName();
-
-    @Nullable
-    public abstract ResourceLocation OverlayIcon();
+    public ResourceLocation OverlayIcon(){
+        return this.overlayTexture;
+    }
 
 
 
@@ -74,13 +85,12 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
             ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
             pPlayer.getCooldowns().addCooldown(itemStack.getItem(), 20);
 
-            pPlayer.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+            pPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 if (arcReactor.hasArcReactorSlot()) {
-                    if (!arcReactor.hasArcReactor()) {
+                    if (arcReactor.getArcReactorStack() == ItemStack.EMPTY) {
                         if(pPlayer.getItemBySlot(EquipmentSlot.CHEST).isEmpty() || !RsImmServerConfigs.ARC_REACTOR_EXTRACT_INSERT_LIMITS.get()){
                             // bake the arc reactor to the player as capability
-                            arcReactor.setArcReactor(displayName(), Item.getId(itemStack.getItem()), maxEnergy(), energy(itemStack),
-                                    energyOutput(), idleDrain(), poisonFactor());
+                            arcReactor.setArcReactor(itemStack);
                             // remove the item
                             itemStack.setCount(0);
 
@@ -107,36 +117,32 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(Screen.hasShiftDown()){
-            Component text;
+            pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.energy").append(": ")
+                    .append(energy(pStack) + "FE/" + maxEnergy + "FE").
+                    withStyle(ChatFormatting.GRAY));
 
-            text = Component.translatable("arc_reactor.rsimm.energy").append(energy(pStack) + "/" + maxEnergy()).
-                    withStyle(ChatFormatting.GRAY);
-            pTooltipComponents.add(text);
+            pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.energy_output").append(": ")
+                    .append(Long.toString(energyOutput) + "FE/t").
+                    withStyle(ChatFormatting.GRAY));
 
-            text = Component.translatable("arc_reactor.rsimm.energy_output").append(Long.toString(energyOutput())).
-                    withStyle(ChatFormatting.GRAY);
-            pTooltipComponents.add(text);
-
-            text = Component.translatable("arc_reactor.rsimm.idle_drain").append(Integer.toString(idleDrain())).
-                    withStyle(ChatFormatting.GRAY);
-            pTooltipComponents.add(text);
-
-            text = Component.translatable("arc_reactor.rsimm.posion_factor").append(Integer.toString(poisonFactor())).
-                    withStyle(ChatFormatting.GRAY);
-            pTooltipComponents.add(text);
+            pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.idle_drain").append(": ")
+                    .append(Integer.toString(idleDrain) + "FE/t").
+                    withStyle(ChatFormatting.GRAY));
 
         }   else {
-            Component text;
+            pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.energy").append(": ")
+                    .append(getTooltipBar(maxEnergy, energy(pStack)))
+                    .withStyle(getDisplayColour(maxEnergy, energy(pStack))));
 
-            text = Component.translatable("arc_reactor.rsimm.energy").append(getTooltipBar(maxEnergy(), energy(pStack)))
-                .withStyle(getDisplayColour(maxEnergy(), energy(pStack)));
-            pTooltipComponents.add(text);
-
-            if(energy(pStack) <= 0){
-                text = Component.translatable("arc_reactor.rsimm.depleted")
-                        .withStyle(ChatFormatting.DARK_GRAY);
-                pTooltipComponents.add(text);
+            if (energyOutput > 0){
+                pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.rechargeable")
+                        .withStyle(ChatFormatting.DARK_GRAY));
             }
+            else if(energy(pStack) <= 0){
+                pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.depleted")
+                        .withStyle(ChatFormatting.DARK_GRAY));
+            }
+
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
@@ -176,7 +182,7 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
         if(itemStack.getTag() != null) {
             return itemStack.getTag().getLong("energy");
         }   else {
-            return maxEnergy();
+            return maxEnergy;
         }
     }
 
@@ -194,7 +200,7 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
         if(shouldFillReactorIfNBTNotPresent()){
             if(pStack.getTag() == null){
                 CompoundTag tag = new CompoundTag();
-                tag.putLong("energy", maxEnergy());
+                tag.putLong("energy", maxEnergy);
 
                 pStack.setTag(tag);
             }
@@ -240,18 +246,15 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
 
 
 
-    // public int getEnergyReceive() {
-    //     return 500;
-    // }
-
-    public int getEnergyExtract() {
-        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, energyOutput()));
+    private int getEnergyReceive() {
+        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, energyInput));
     }
-
-    public int getEnergyCapacity(){
-        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, maxEnergy()));
+    private int getEnergyExtract() {
+        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, energyOutput));
     }
-
+    private int getEnergyCapacity(){
+        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, maxEnergy));
+    }
     private void setEnergyStored(ItemStack stack, long value) {
         ItemTagUtils.putLong(stack, "energy", value);
 
@@ -265,12 +268,11 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
 
     @Override
     public int receiveEnergy(ItemStack stack, int maxReceive, boolean simulate) {
-        return 0;
-        // if (getEnergyReceive() == 0) return 0;
-        // int energyStored = getEnergy(stack);
-        // int energyReceived = Math.min(getCapacity(stack) - energyStored, Math.min(getEnergyReceive(), maxReceive));
-        // if (!simulate) setEnergyStored(stack, energyStored + energyReceived);
-        // return energyReceived;
+        if (getEnergyReceive() == 0) return 0;
+        int energyStored = (int) Math.max(0, Math.min(getEnergyCapacity(), getEnergyStored(stack)));
+        int energyReceived = Math.min(getCapacity(stack) - energyStored, Math.min(getEnergyReceive(), maxReceive));
+        if (!simulate) setEnergyStored(stack, energyStored + energyReceived);
+        return energyReceived;
     }
 
     // Modified to handle long variables as well

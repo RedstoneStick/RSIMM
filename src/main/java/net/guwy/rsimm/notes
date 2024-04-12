@@ -1,6 +1,8 @@
 - Repulsor 1.1 pulls 10000 rf per blast
 - Repulsor 1.0 pulls 5000 rf per blast
 
+- MAYBE: zombies drop rotten hearth you have to cure so you can cure your chest hole
+
 - repulsors taking damage with the overheat of the hull in consideration
 - Hull has airtightness loss at durability % property
 - Circuitry gets damaged every tick the suit is flooded
@@ -8,3 +10,9 @@
 - When circuitry is damaged it boots up slower
 
 - repulsor beam charge sound before beam is fired will change pitch between 0-4
+
+- Visor part is the one handling the hud display, also overlay is displayed depending on visor, so you can upgrade your hud
+
+
+AfterChecks:
+- check processDrag function on AbstractHull.class

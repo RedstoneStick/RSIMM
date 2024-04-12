@@ -1,11 +1,7 @@
 package net.guwy.rsimm.content.blocks.armor_unequipping_station;
 
-import net.guwy.rsimm.content.items.ammo_kits.AbstractAmmoKit;
-import net.guwy.rsimm.content.items.armors.AbstractIronmanArmorItem;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.IronmanArmorData;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.IronmanArmorDataProvider;
+import net.guwy.rsimm.content.items.armors.old.AbstractIronmanArmorItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -65,11 +61,11 @@ public class ArmorUnequippingStationBlock extends Block {
 
     private boolean isWearingIronmanArmor(Player player){
         AtomicBoolean hasCapabiltyValid = new AtomicBoolean(false);
-        player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
-            if(armorData.getHasArmor()){
-                hasCapabiltyValid.set(true);
-            }
-        });
+        //player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
+        //    if(armorData.getHasArmor()){
+        //        hasCapabiltyValid.set(true);
+        //    }
+        //});
         boolean bool = player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AbstractIronmanArmorItem
                 && player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AbstractIronmanArmorItem
                 && player.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AbstractIronmanArmorItem
@@ -79,46 +75,46 @@ public class ArmorUnequippingStationBlock extends Block {
     }
 
     private void giveUnassambledArmor(Player player){
-        player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
-            ItemStack itemStack;
-            AbstractIronmanArmorItem armorItem = (AbstractIronmanArmorItem) player.getItemBySlot(EquipmentSlot.CHEST).getItem();
-            AbstractAmmoKit ammoKit = (AbstractAmmoKit) armorItem.AmmoKitItem();
-
-            itemStack = new ItemStack(ammoKit.UnassembledHelmetItem());
-            itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.HEAD).getDamageValue());
-            player.getInventory().placeItemBackInInventory(itemStack);
-
-            itemStack = new ItemStack(ammoKit.UnassembledChestplateItem());
-            itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.CHEST).getDamageValue());
-            player.getInventory().placeItemBackInInventory(itemStack);
-
-            itemStack = new ItemStack(ammoKit.UnassembledLeggingsItem());
-            itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.LEGS).getDamageValue());
-            player.getInventory().placeItemBackInInventory(itemStack);
-
-            itemStack = new ItemStack(ammoKit.UnassembledBootsItem());
-            itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.FEET).getDamageValue());
-            player.getInventory().placeItemBackInInventory(itemStack);
-
-            itemStack = new ItemStack(ammoKit);
-            CompoundTag tag = new CompoundTag();
-            tag.putInt("1", armorData.getArmorStorage(1));
-            tag.putInt("2", armorData.getArmorStorage(2));
-            tag.putInt("3", armorData.getArmorStorage(3));
-            tag.putInt("4", armorData.getArmorStorage(4));
-            tag.putInt("5", armorData.getArmorStorage(5));
-            tag.putInt("6", armorData.getArmorStorage(6));
-            tag.putInt("7", armorData.getArmorStorage(7));
-            tag.putInt("8", armorData.getArmorStorage(8));
-            tag.putInt("9", armorData.getArmorStorage(9));
-            tag.putInt("10", armorData.getArmorStorage(10));
-            itemStack.setTag(tag);
-            player.getInventory().placeItemBackInInventory(itemStack);
-        });
+        //player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
+        //    ItemStack itemStack;
+        //    AbstractIronmanArmorItem armorItem = (AbstractIronmanArmorItem) player.getItemBySlot(EquipmentSlot.CHEST).getItem();
+        //    AbstractAmmoKit ammoKit = (AbstractAmmoKit) armorItem.AmmoKitItem();
+//
+        //    itemStack = new ItemStack(ammoKit.UnassembledHelmetItem());
+        //    itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.HEAD).getDamageValue());
+        //    player.getInventory().placeItemBackInInventory(itemStack);
+//
+        //    itemStack = new ItemStack(ammoKit.UnassembledChestplateItem());
+        //    itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.CHEST).getDamageValue());
+        //    player.getInventory().placeItemBackInInventory(itemStack);
+//
+        //    itemStack = new ItemStack(ammoKit.UnassembledLeggingsItem());
+        //    itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.LEGS).getDamageValue());
+        //    player.getInventory().placeItemBackInInventory(itemStack);
+//
+        //    itemStack = new ItemStack(ammoKit.UnassembledBootsItem());
+        //    itemStack.setDamageValue(player.getItemBySlot(EquipmentSlot.FEET).getDamageValue());
+        //    player.getInventory().placeItemBackInInventory(itemStack);
+//
+        //    itemStack = new ItemStack(ammoKit);
+        //    CompoundTag tag = new CompoundTag();
+        //    tag.putInt("1", armorData.getArmorStorage(1));
+        //    tag.putInt("2", armorData.getArmorStorage(2));
+        //    tag.putInt("3", armorData.getArmorStorage(3));
+        //    tag.putInt("4", armorData.getArmorStorage(4));
+        //    tag.putInt("5", armorData.getArmorStorage(5));
+        //    tag.putInt("6", armorData.getArmorStorage(6));
+        //    tag.putInt("7", armorData.getArmorStorage(7));
+        //    tag.putInt("8", armorData.getArmorStorage(8));
+        //    tag.putInt("9", armorData.getArmorStorage(9));
+        //    tag.putInt("10", armorData.getArmorStorage(10));
+        //    itemStack.setTag(tag);
+        //    player.getInventory().placeItemBackInInventory(itemStack);
+        //});
     }
 
     private void deleteArmor(Player player) {
-        player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(IronmanArmorData::decompileArmor);
+        //player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(IronmanArmorData::decompileArmor);
         player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
         player.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Blocks.AIR));
         player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));

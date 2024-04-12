@@ -9,6 +9,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
 public class Mark1AmmoKit extends AbstractAmmoKit{
@@ -100,41 +101,41 @@ public class Mark1AmmoKit extends AbstractAmmoKit{
 
     @Override
     public Item UnassembledHelmetItem() {
-        return RsImmArmorItems.UNASSAMBLED_MARK_1_HELMET.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item UnassembledChestplateItem() {
-        return RsImmArmorItems.UNASSAMBLED_MARK_1_CHESTPLATE.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item UnassembledLeggingsItem() {
-        return RsImmArmorItems.UNASSAMBLED_MARK_1_LEGGINGS.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item UnassembledBootsItem() {
-        return RsImmArmorItems.UNASSAMBLED_MARK_1_BOOTS.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item HelmetItem() {
-        return RsImmArmorItems.MARK_1_HELMET.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item ChestplateItem() {
-        return RsImmArmorItems.MARK_1_CHESTPLATE.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item LeggingsItem() {
-        return RsImmArmorItems.MARK_1_LEGGINGS.get();
+        return Items.BARRIER;
     }
 
     @Override
     public Item BootsItem() {
-        return RsImmArmorItems.MARK_1_BOOTS.get();
+        return Items.BARRIER;
     }
 }

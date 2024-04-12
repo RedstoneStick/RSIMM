@@ -1,11 +1,9 @@
 package net.guwy.rsimm.content.blocks.armor_equipping_station;
 
 import net.guwy.rsimm.content.items.ammo_kits.AbstractAmmoKit;
-import net.guwy.rsimm.content.items.armors.AbstractIronmanArmorItem;
+import net.guwy.rsimm.content.items.armors.old.AbstractIronmanArmorItem;
 import net.guwy.rsimm.index.RsImmBlockEntities;
 import net.guwy.rsimm.index.RsImmTags;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.ArmorEnergyType;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.IronmanArmorDataProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -182,23 +180,23 @@ public class ArmorEquippingStationBlockEntity extends BlockEntity implements Men
 
                     if(supplierItem.getTag() != null){
                         addArmor(player, pEntity);
-                        player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
-                            CompoundTag nbtTag = supplierItem.getTag();
-
-                            armorData.compileArmor(nbtTag.getLong("energy"), armorItem.MaxStableEnergy(), ArmorEnergyType.EMERGENCY, armorItem.MaxEnergyOutput()
-                                    , armorItem.FlightOverSpeedThreshold(), armorItem.FlightStallSpeed());
-
-                            armorData.setArmorStorage(1, nbtTag.getInt("1"));
-                            armorData.setArmorStorage(2, nbtTag.getInt("2"));
-                            armorData.setArmorStorage(3, nbtTag.getInt("3"));
-                            armorData.setArmorStorage(4, nbtTag.getInt("4"));
-                            armorData.setArmorStorage(5, nbtTag.getInt("5"));
-                            armorData.setArmorStorage(6, nbtTag.getInt("6"));
-                            armorData.setArmorStorage(7, nbtTag.getInt("7"));
-                            armorData.setArmorStorage(8, nbtTag.getInt("8"));
-                            armorData.setArmorStorage(9, nbtTag.getInt("9"));
-                            armorData.setArmorStorage(10, nbtTag.getInt("10"));
-                        });
+                        //player.getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(armorData -> {
+                        //    CompoundTag nbtTag = supplierItem.getTag();
+//
+                        //    armorData.compileArmor(nbtTag.getLong("energy"), armorItem.MaxStableEnergy(), ArmorEnergyType.EMERGENCY, armorItem.MaxEnergyOutput()
+                        //            , armorItem.FlightOverSpeedThreshold(), armorItem.FlightStallSpeed());
+//
+                        //    armorData.setArmorStorage(1, nbtTag.getInt("1"));
+                        //    armorData.setArmorStorage(2, nbtTag.getInt("2"));
+                        //    armorData.setArmorStorage(3, nbtTag.getInt("3"));
+                        //    armorData.setArmorStorage(4, nbtTag.getInt("4"));
+                        //    armorData.setArmorStorage(5, nbtTag.getInt("5"));
+                        //    armorData.setArmorStorage(6, nbtTag.getInt("6"));
+                        //    armorData.setArmorStorage(7, nbtTag.getInt("7"));
+                        //    armorData.setArmorStorage(8, nbtTag.getInt("8"));
+                        //    armorData.setArmorStorage(9, nbtTag.getInt("9"));
+                        //    armorData.setArmorStorage(10, nbtTag.getInt("10"));
+                        //});
 
                         pEntity.itemHandler.extractItem(0, 1, false);
                         pEntity.itemHandler.extractItem(1, 1, false);

@@ -1,6 +1,8 @@
 package net.guwy.rsimm.utils;
 
 
+import net.guwy.sticky_foundations.utils.ItemTagUtils;
+import net.guwy.sticky_foundations.utils.NumberUtils;
 import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -13,7 +15,7 @@ public class AtmosphericDensity {
 
         // Overworld has a density changing depending on height
         if(entity.getLevel().dimension() == Level.OVERWORLD){
-            return Math.min(1.0, Math.max(0.0, 1.0 - (entity.getY() - SEA_LEVEL) / (NO_ATMOSPHERE_Y - SEA_LEVEL)));
+            return Math.min(1.0, Math.max(0.0, NumberUtils.map.mapDouble(entity.getY(), SEA_LEVEL, NO_ATMOSPHERE_Y, 0, 1)));
         }
         // End is 0.3
         else if (entity.getLevel().dimension() == Level.END){

@@ -1,7 +1,6 @@
 package net.guwy.rsimm.events.server_events;
 
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.armor_data.IronmanArmorDataProvider;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 public class CapabilityCarryOverDeathHandler {
@@ -12,8 +11,8 @@ public class CapabilityCarryOverDeathHandler {
 
 
         // Copy Arc Reactor Data
-        event.getOriginal().getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(oldStore -> {
-            event.getEntity().getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(newStore -> {
+        event.getOriginal().getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(oldStore -> {
+            event.getEntity().getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(newStore -> {
 
                 if(oldStore.getPlayerArcReactorPoisoning() > oldStore.getMaximumPoisoning() * 3/4){
                     oldStore.setPlayerArcReactorPoisoning(oldStore.getMaximumPoisoning() * 3/4);        //gives you 12 days if the poison factor is 14 (43 if its 4)
@@ -26,8 +25,8 @@ public class CapabilityCarryOverDeathHandler {
 
         // Copy Armor Data (only when you trave from end to the overworld)
         if(!event.isWasDeath()){
-            event.getOriginal().getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(oldStore -> {
-                event.getEntity().getCapability(IronmanArmorDataProvider.PLAYER_IRONMAN_ARMOR_DATA).ifPresent(newStore -> {
+            event.getOriginal().getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(oldStore -> {
+                event.getEntity().getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
             });

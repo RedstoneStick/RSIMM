@@ -1,12 +1,12 @@
 package net.guwy.rsimm.events.player_tick.content;
 
 import net.guwy.rsimm.config.RsImmServerConfigs;
-import net.guwy.rsimm.content.items.arc_reactors.ArcReactorItem;
+import net.guwy.rsimm.content.items.arc_reactors.GenericArcReactorItem;
 import net.guwy.rsimm.content.network_packets.MissingArcReactorS2CPacket;
 import net.guwy.rsimm.content.network_packets.PlayerArcReactorClientSyncS2CPacket;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmEffects;
 import net.guwy.rsimm.index.RsImmNetworking;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChestSlotCheck {
     public static void init(TickEvent.PlayerTickEvent event){
-        event.player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        event.player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
             if(arcReactor.hasArcReactorSlot()){
 
                 /**
@@ -41,7 +41,7 @@ public class ChestSlotCheck {
                 if(arcReactor.hasArcReactor()){
 
                     int id = arcReactor.getArcReactorTypeId();
-                    ArcReactorItem item = (ArcReactorItem) Item.byId(id);
+                    GenericArcReactorItem item = (GenericArcReactorItem) Item.byId(id);
                     RsImmNetworking.sendToClients(new PlayerArcReactorClientSyncS2CPacket(id, event.player.getUUID(), energyPercentage));
                 }
                 // if no reactor is present sends a blank slate with the uuid which the client will use it to remove the arc reactor data from itself
@@ -57,7 +57,7 @@ public class ChestSlotCheck {
     public static boolean hasArcReactor(Player player){
         AtomicBoolean condition = new AtomicBoolean(false);
 
-        player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+        player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
             if(arcReactor.hasArcReactorSlot()){
                 if((arcReactor.hasArcReactor())){
                     condition.set(true);

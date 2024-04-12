@@ -4,7 +4,7 @@ import net.guwy.rsimm.RsImm;
 import net.guwy.rsimm.compat.curios.Curios;
 import net.guwy.rsimm.content.entities.armor.misc.EdithGlassesItemRenderer;
 import net.guwy.rsimm.content.items.arc_reactors.AbstractArcReactorItem;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -49,7 +49,7 @@ public class EdithGlassesArmorItem extends GeoArmorItem implements IAnimatable {
 
         if(!level.isClientSide){
             // Save arc reactor data as ntb to use for client sync
-            player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arc_reactor -> {
+            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arc_reactor -> {
                 // If has a hole and has a reactor
                 ItemTagUtils.putBoolean(stack, HAS_SLOT_TAG_KEY, arc_reactor.hasArcReactorSlot());
                 ItemTagUtils.putBoolean(stack, HAS_REACTOR_TAG_KEY, arc_reactor.hasArcReactor());

@@ -1,6 +1,8 @@
 package net.guwy.rsimm.content.particles;
 
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.simibubi.create.content.equipment.bell.CustomRotationParticle;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;

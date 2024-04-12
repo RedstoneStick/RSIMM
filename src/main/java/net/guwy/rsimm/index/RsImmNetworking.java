@@ -34,25 +34,6 @@ public class RsImmNetworking {
                 .consumerMainThread(Mark1FlameThrowerC2SPacket::handle)
                 .add();
 
-
-        net.messageBuilder(FlightDataS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(FlightDataS2CPacket::new)
-                .encoder(FlightDataS2CPacket::toBytes)
-                .consumerMainThread(FlightDataS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(FlightDataC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(FlightDataC2SPacket::new)
-                .encoder(FlightDataC2SPacket::toBytes)
-                .consumerMainThread(FlightDataC2SPacket::handle)
-                .add();
-
-        net.messageBuilder(FreezeDataS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(FreezeDataS2CPacket::new)
-                .encoder(FreezeDataS2CPacket::toBytes)
-                .consumerMainThread(FreezeDataS2CPacket::handle)
-                .add();
-
         net.messageBuilder(ArcReactorChargerClientSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ArcReactorChargerClientSyncS2CPacket::new)
                 .encoder(ArcReactorChargerClientSyncS2CPacket::toBytes)

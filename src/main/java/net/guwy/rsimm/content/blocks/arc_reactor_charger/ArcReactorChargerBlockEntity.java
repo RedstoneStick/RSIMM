@@ -6,7 +6,7 @@ import net.guwy.rsimm.content.network_packets.ArcReactorChargerClientSyncS2CPack
 import net.guwy.rsimm.index.RsImmBlockEntities;
 import net.guwy.rsimm.index.RsImmNetworking;
 import net.guwy.rsimm.index.RsImmTags;
-import net.guwy.rsimm.mechanics.capabilities.forge.ModEnergyStorage;
+import net.guwy.rsimm.mechanics.capabilities.forge.ModBlockEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -227,7 +227,7 @@ public class ArcReactorChargerBlockEntity extends BlockEntity implements MenuPro
 
 
 
-    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(50000) {
+    private final ModBlockEnergyStorage ENERGY_STORAGE = new ModBlockEnergyStorage(50000) {
         @Override
         public void onEnergyChanged() {
             setChanged();

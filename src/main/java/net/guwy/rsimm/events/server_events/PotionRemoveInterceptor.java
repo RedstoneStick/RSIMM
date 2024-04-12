@@ -1,7 +1,7 @@
 package net.guwy.rsimm.events.server_events;
 
+import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmEffects;
-import net.guwy.rsimm.mechanics.capabilities.custom.player.arc_reactor.ArcReactorSlotProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
@@ -15,7 +15,7 @@ public class PotionRemoveInterceptor {
             if (event.getEntity().getType() == EntityType.PLAYER) {
 
                 Player player = (Player) event.getEntity();
-                player.getCapability(ArcReactorSlotProvider.PLAYER_REACTOR_SLOT).ifPresent(arcReactor -> {
+                player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
                     if (arcReactor.hasArcReactorSlot()) {
                         if (!(arcReactor.hasArcReactor()) || !(arcReactor.getArcReactorEnergy() > 0)) {

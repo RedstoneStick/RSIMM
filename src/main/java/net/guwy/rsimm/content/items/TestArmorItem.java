@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -86,7 +87,7 @@ public class TestArmorItem extends GeoArmorItem implements IAnimatable, ILoopTyp
         // Make sure the player is wearing all the armor. If they are, continue playing
         // the animation, otherwise stop
         boolean isWearingAll = armorList
-                .containsAll(Arrays.asList(RsImmArmorItems.TEST_ARMOR_BOOTS.get(), RsImmArmorItems.TEST_ARMOR_LEGGINGS.get(), RsImmArmorItems.TEST_ARMOR_HELMET.get()));
+                .containsAll(Arrays.asList(Items.BARRIER, Items.BARRIER, Items.BARRIER));
         return isWearingAll ? PlayState.CONTINUE : PlayState.STOP;
     }
 

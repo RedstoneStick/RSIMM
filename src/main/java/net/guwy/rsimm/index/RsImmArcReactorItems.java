@@ -1,7 +1,7 @@
 package net.guwy.rsimm.index;
 
 import net.guwy.rsimm.RsImm;
-import net.guwy.rsimm.content.items.arc_reactors.ArcReactorItem;
+import net.guwy.rsimm.content.items.arc_reactors.GenericArcReactorItem;
 import net.guwy.rsimm.content.items.arc_reactors.UnchargedArcReactorItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +24,7 @@ public class RsImmArcReactorItems {
 
     // Arc Reactors
     public static final RegistryObject<Item> MARK_1_ARC_REACTOR = ITEMS.register("mark_1_arc_reactor",
-            () -> new ArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
                     "mark 1", 1000000, 100000, 5, 4, new ResourceLocation("item.rsimm.mark_1_arc_reactor_depleted"),
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/mk1_overlay_sprites.png")));
 
@@ -35,7 +35,7 @@ public class RsImmArcReactorItems {
 
 
     public static final RegistryObject<Item> MARK_2_ARC_REACTOR = ITEMS.register("mark_2_arc_reactor",
-            () -> new ArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
                     "mark 2", 10000000, 1000000, 25, 8, new ResourceLocation("item.rsimm.mark_2_arc_reactor_depleted"),
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/edith_glasses_overlay.png")));
 
@@ -47,7 +47,7 @@ public class RsImmArcReactorItems {
 
     // Non Fission Reactors
     public static final RegistryObject<Item> BATTERY_REACTOR = ITEMS.register("battery_reactor",
-            () -> new ArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
                     "AA Battery", 6000, 5, 1, 0, null,
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/battery_overlay_sprites.png")){
                 @Override
