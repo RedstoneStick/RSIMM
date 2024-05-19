@@ -63,7 +63,7 @@ A semi realistic and movie focused iron man mod with lots of survival elements
     side="BOTH"
 [[dependencies.rsimm]]
 modId="create"
-mandatory=true
+mandatory=false
 versionRange="[0.3.0,)"
 ordering="NONE"
 side="BOTH"
@@ -76,6 +76,6 @@ side="BOTH"
 [[dependencies.rsimm]]
 modId="sticky_foundations"
 mandatory=true
-versionRange="[0.06,)"
+versionRange="[0.19,)"
 ordering="NONE"
 side="BOTH"

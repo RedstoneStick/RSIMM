@@ -107,7 +107,7 @@ public class ChestCutterItem extends Item {
 
     public static void tryAndStealReactor(Player player, Player targetPlayer){
         targetPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(targetReactor -> {
-            if(targetReactor.hasArcReactorSlot() && targetReactor.hasArcReactor()){
+            if(targetReactor.hasArcReactorSlot() && targetReactor.getArcReactorStack() != ItemStack.EMPTY){
 
                 if(targetPlayer.getItemBySlot(EquipmentSlot.CHEST).isEmpty()){
 

@@ -5,11 +5,11 @@ import net.minecraft.world.item.ItemStack;
 // From Simply jetpacks 2 by Tomson124
 public interface IItemExtendedEnergyContainer {
 
-    int receiveEnergy(ItemStack container, int maxReceive, boolean simulate);
+    int receiveForgeEnergy(ItemStack container, int maxReceive, boolean simulate);
 
-    int extractEnergy(ItemStack container, int maxExtract, boolean simulate);
+    int extractForgeEnergy(ItemStack container, int maxExtract, boolean simulate);
 
-    int getEnergy(ItemStack container);
+    int getForgeEnergy(ItemStack container);
 
-    int getCapacity(ItemStack container);
+    int getForgeEnergyCapacity(ItemStack container);
 }

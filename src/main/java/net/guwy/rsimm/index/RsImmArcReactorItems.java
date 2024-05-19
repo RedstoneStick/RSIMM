@@ -2,6 +2,7 @@ package net.guwy.rsimm.index;
 
 import net.guwy.rsimm.RsImm;
 import net.guwy.rsimm.content.items.arc_reactors.GenericArcReactorItem;
+import net.guwy.rsimm.content.items.arc_reactors.RechargeableArcReactorItem;
 import net.guwy.rsimm.content.items.arc_reactors.UnchargedArcReactorItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,35 +25,48 @@ public class RsImmArcReactorItems {
 
     // Arc Reactors
     public static final RegistryObject<Item> MARK_1_ARC_REACTOR = ITEMS.register("mark_1_arc_reactor",
-            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
-                    "mark 1", 1000000, 100000, 5, 4, new ResourceLocation("item.rsimm.mark_1_arc_reactor_depleted"),
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
+                    1000000, 100000, 5, new ResourceLocation("item.rsimm.mark_1_arc_reactor_depleted"),
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/mk1_overlay_sprites.png")));
 
     public static final RegistryObject<Item> MARK_1_ARC_REACTOR_UNCHARGED = ITEMS.register("mark_1_arc_reactor_uncharged",
-            () -> new UnchargedArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
+            () -> new UnchargedArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
                     MARK_1_ARC_REACTOR.get(), 10000000, 200));
 
 
 
     public static final RegistryObject<Item> MARK_2_ARC_REACTOR = ITEMS.register("mark_2_arc_reactor",
-            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
-                    "mark 2", 10000000, 1000000, 25, 8, new ResourceLocation("item.rsimm.mark_2_arc_reactor_depleted"),
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
+                    10000000, 1000000, 10, new ResourceLocation("item.rsimm.mark_2_arc_reactor_depleted"),
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/edith_glasses_overlay.png")));
 
     public static final RegistryObject<Item> MARK_2_ARC_REACTOR_UNCHARGED = ITEMS.register("mark_2_arc_reactor_uncharged",
-            () -> new UnchargedArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
+            () -> new UnchargedArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
                     MARK_2_ARC_REACTOR.get(), 50000000, 1000));
 
 
 
     // Non Fission Reactors
     public static final RegistryObject<Item> BATTERY_REACTOR = ITEMS.register("battery_reactor",
-            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.MAIN),
-                    "AA Battery", 6000, 5, 1, 0, null,
+            () -> new GenericArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
+                    12000, 5, 1, null,
+                    new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/disposable_battery_overlay_sprites.png")){
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+                    pTooltipComponents.add(Component.translatable("tooltip.rsimm.battery_reactor.1"));
+                    pTooltipComponents.add(Component.translatable("tooltip.rsimm.battery_reactor.2"));
+                    super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+                }
+            });
+
+    public static final RegistryObject<Item> RECHARGEABLE_BATTERY_REACTOR = ITEMS.register("rechargeable_battery_reactor",
+            () -> new RechargeableArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
+                    6000, 50, 1, false,
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/battery_overlay_sprites.png")){
                 @Override
                 public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-                    pTooltipComponents.add(Component.translatable("tooltip.rsimm.battery_reactor"));
+                    pTooltipComponents.add(Component.translatable("tooltip.rsimm.rechargeable_battery_reactor.1"));
+                    pTooltipComponents.add(Component.translatable("tooltip.rsimm.rechargeable_battery_reactor.2"));
                     super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
                 }
             });

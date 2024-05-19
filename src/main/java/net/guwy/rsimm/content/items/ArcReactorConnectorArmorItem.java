@@ -2,6 +2,7 @@ package net.guwy.rsimm.content.items;
 
 import net.guwy.rsimm.RsImm;
 import net.guwy.rsimm.compat.curios.Curios;
+import net.guwy.rsimm.content.items.arc_reactors.AbstractArcReactorItem;
 import net.guwy.rsimm.index.RsImmCapabilities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,6 +23,7 @@ import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnimatable, ILoopType {
 
@@ -50,26 +52,21 @@ public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnima
         if(!level.isClientSide){
             // gets the capabilities
             player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
-                // gets each equipment slot 1 by 1 (includes hands)
-                for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+                ItemStack reactorStack = arcReactor.getArcReactorStack();
+                if(reactorStack != ItemStack.EMPTY && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
+                    AtomicLong expandableEnergy = new AtomicLong(Math.min(arcReactorItem.getEnergyExtract(), arcReactorItem.getEnergyStored(reactorStack)));
 
-                    ItemStack itemStack = player.getItemBySlot(equipmentSlot);
-                    itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
+                    // gets each equipment slot 1 by 1 (includes hands)
+                    for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
 
-                        // gets energy to send
-                        int neededEnergy = itemEnergy.receiveEnergy((int) arcReactor.getArcReactorEnergyOutput(), true);
-                        int energyToSend = (int) Math.min(arcReactor.getArcReactorEnergyOutput() - arcReactor.getEnergyLoad(), neededEnergy);
+                        ItemStack itemStack = player.getItemBySlot(equipmentSlot);
+                        itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
 
-                        // checks if the energy to send can be supplied
-                        if(arcReactor.testAddEnergyLoad(energyToSend)){
-
-                            // sends energy to the item
-                            itemEnergy.receiveEnergy(energyToSend, false);
-
-                            // adds the energy sent to the arc reactor's load which will handle the overload and drain
-                            arcReactor.addEnergyLoad(energyToSend);
-                        }
-                    });
+                            // sends energy and reduces the expandable energy amount
+                            int energySent = itemEnergy.receiveEnergy((int) Math.max(0, Math.min(Integer.MAX_VALUE, expandableEnergy.get())), false);
+                            expandableEnergy.addAndGet(-energySent);
+                        });
+                    }
                 }
             });
         }
@@ -92,15 +89,15 @@ public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnima
     }
 
 
-    /**
-     * Curio Stuff
-     */
-    @Override
-    public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        if(RsImm.isCuriosLoaded()){
-            return Curios.createArcReactorConnectorProvider(stack);
-        } else {
-            return super.initCapabilities(stack, nbt);
-        }
-    }
+    ///**
+    // * Curio Stuff
+    // */
+    //@Override
+    //public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
+    //    if(RsImm.isCuriosLoaded()){
+    //        return Curios.createArcReactorConnectorProvider(stack);
+    //    } else {
+    //        return super.initCapabilities(stack, nbt);
+    //    }
+    //}
 }

@@ -94,8 +94,9 @@ public class EdithGlassesOverlay {
                 boolean hasReactorSlot = ItemTagUtils.getBoolean(helmetItem, EdithGlassesArmorItem.HAS_SLOT_TAG_KEY);
                 boolean hasReactor = ItemTagUtils.getBoolean(helmetItem, EdithGlassesArmorItem.HAS_REACTOR_TAG_KEY);
                 long reactorEnergy = ItemTagUtils.getLong(helmetItem, EdithGlassesArmorItem.ENERGY_TAG_KEY);
+                long oldReactorEnergy = ItemTagUtils.getLong(helmetItem, EdithGlassesArmorItem.OLD_ENERGY_TAG_KEY);
                 long reactorEnergyCapacity = ItemTagUtils.getLong(helmetItem, EdithGlassesArmorItem.ENERGY_CAPACITY_TAG_KEY);
-                long reactorLoad = ItemTagUtils.getLong(helmetItem, EdithGlassesArmorItem.LOAD_TAG_KEY);
+                long reactorLoad = oldReactorEnergy - reactorEnergy;
                 long reactorMaxOutput = ItemTagUtils.getLong(helmetItem, EdithGlassesArmorItem.MAX_OUTPUT_TAG_KEY);
                 String reactorIconTexture = ItemTagUtils.getString(helmetItem, EdithGlassesArmorItem.REACTOR_ICON_TAG_KEY);
 
@@ -127,8 +128,8 @@ public class EdithGlassesOverlay {
 
     private static void RenderReactorIcon(PoseStack poseStack, int x, int y, double energyPercent, boolean hasReactor, String texture){
         // Checks if there is a custom texture present otherwise continues with the default one
-        if(!Objects.equals(texture, "")){
-            RenderSystem.setShaderTexture(0, Objects.requireNonNull(ResourceLocation.tryParse(texture)));
+        if(texture != ""){
+            RenderSystem.setShaderTexture(0, new ResourceLocation(texture));
         }
 
         // Blue Reactor By Default
@@ -209,7 +210,8 @@ public class EdithGlassesOverlay {
         if(hasReactor){
 
             // Length of the bar rounded up to at least show if there is any energy consumption
-            int bar = (int) Math.ceil(37 * loadPercent);
+            // Its capped at 37 pixel cause you can actually draw more then the maximum reactor allows due to each action draining energy independently
+            int bar = Math.min((int) Math.ceil(37 * loadPercent), 37);
 
             GuiComponent.blit(poseStack,
                     (int) (x + (124 * SIZE_MULTIPLIER.get())),

@@ -34,15 +34,14 @@ public abstract class AbstractPowerSupply extends GenericIronManArmorPart {
 
     }
 
-    private ItemStack getPlayerReactor(Entity entity){
-        AtomicReference<ItemStack> reactor = new AtomicReference<>(ItemStack.EMPTY);
-        entity.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactorSlot -> {
-            ItemStack itemStack = new ItemStack(Item.byId(arcReactorSlot.getArcReactorTypeId()));
-            //ItemTagUtils.
 
-            reactor.set(itemStack);
-        });
-
-        return reactor.get();
-    }
+    // Is a bad method, access the arc reactor with the capability instead
+    //private ItemStack getPlayerReactor(Entity entity){
+    //    AtomicReference<ItemStack> reactor = new AtomicReference<>(ItemStack.EMPTY);
+    //    entity.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactorSlot -> {
+    //        ItemStack itemStack = new ItemStack(Item.byId(arcReactorSlot.getArcReactorTypeId()));
+    //        reactor.set(itemStack);
+    //    });
+    //    return reactor.get();
+    //}
 }

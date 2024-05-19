@@ -4,57 +4,17 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 public class GenericArcReactorItem extends AbstractArcReactorItem {
-    String displayName;
-    long maxEnergy;
-    long energyOutput;
-    int idleDrain;
-    int poisonFactor;
-    ResourceLocation depletedName;
-    ResourceLocation overlayTexture;
-
-    public GenericArcReactorItem(Properties pProperties, String displayName, long maxEnergy, long energyOutput, int idleDrain, int poisonFactor, ResourceLocation depletedName, @Nullable ResourceLocation overlayTexture) {
-        super(pProperties);
-        this.displayName = displayName;
-        this.maxEnergy = maxEnergy;
-        this.energyOutput = energyOutput;
-        this.idleDrain = idleDrain;
-        this.poisonFactor = poisonFactor;
-        this.depletedName = depletedName;
-        this.overlayTexture = overlayTexture;
-    }
-
-    @Override
-    public @Nullable ResourceLocation OverlayIcon() {
-        return overlayTexture;
-    }
-
-    @Override
-    public String displayName() {
-        return displayName;
-    }
-
-    @Override
-    public long maxEnergy() {
-        return maxEnergy;
-    }
-
-    @Override
-    public long energyOutput() {
-        return energyOutput;
-    }
-
-    @Override
-    public int idleDrain() {
-        return idleDrain;
-    }
-
-    @Override
-    public int poisonFactor() {
-        return poisonFactor;
-    }
-
-    @Override
-    public ResourceLocation depletedName() {
-        return depletedName;
+    /**
+     * A generic arc reactor that can't be recharged
+     * @param pProperties    Item Properties
+     * @param maxEnergy      Energy capacity of the arc reactor
+     * @param energyOutput   Energy Output (/tick) of the reactor
+     * @param idleDrain      Energy consumption (/second) of the reactor when a player wears it
+     * @param depletedName   Display name for the reactor when it depletes (null = use the charged name)
+     * @param overlayTexture 2D sprite that's gonna be used for hud images (null = use mk2 reactor sprite)
+     */
+    public GenericArcReactorItem(Properties pProperties, long maxEnergy, long energyOutput, int idleDrain,
+                                 ResourceLocation depletedName, @Nullable ResourceLocation overlayTexture) {
+        super(pProperties, maxEnergy, energyOutput, 0, idleDrain, depletedName, overlayTexture);
     }
 }

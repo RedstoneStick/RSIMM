@@ -3,7 +3,6 @@ package net.guwy.rsimm.content.items.armors.gen_2;
 import net.guwy.rsimm.content.entities.projectiles.RepulsorBeamEntity;
 import net.guwy.rsimm.enums.RepulsorAttackType;
 import net.guwy.rsimm.index.RsImmEntityTypes;
-import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.IItemEnergyContainer;
 import net.guwy.rsimm.mechanics.capabilities.forge.energy_item.ItemEnergyStorageImpl;
 import net.guwy.sticky_foundations.utils.ItemTagUtils;
 import net.minecraft.core.Direction;
@@ -24,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RepulsorItem extends Item implements IItemEnergyContainer {
+public class RepulsorItem extends Item {
     int blastMaxCharge, blastMaxDamage, blastRange, blastMaxEnergyConsumption;
     int beamChargeTime, beamMaxDamage, beamRange, beamEnergyConsumptionPerTick;
     int flightMaxThrust, flightMaxEnergyConsumption;
@@ -163,27 +162,14 @@ public class RepulsorItem extends Item implements IItemEnergyContainer {
     /** Forge Energy Capability */
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt) {
-        IItemEnergyContainer container = this;
         return new ICapabilityProvider() {
             @Nonnull
             @Override
             public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
                 if (cap == ForgeCapabilities.ENERGY)
-                    return LazyOptional.of(() -> new ItemEnergyStorageImpl(stack, container)).cast();
+                    return LazyOptional.of(() -> new ItemEnergyStorageImpl(stack, energyBuffer)).cast();
                 return LazyOptional.empty();
             }
         };
-    }
-    @Override
-    public int getEnergyCapacity() {
-        return this.energyBuffer;
-    }
-    @Override
-    public int getEnergyExtract() {
-        return this.energyBuffer;
-    }
-    @Override
-    public int getEnergyReceive() {
-        return this.energyBuffer;
     }
 }

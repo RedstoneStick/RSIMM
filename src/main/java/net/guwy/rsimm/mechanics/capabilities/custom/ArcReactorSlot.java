@@ -1,7 +1,6 @@
 package net.guwy.rsimm.mechanics.capabilities.custom;
 
 import net.guwy.rsimm.config.RsImmServerConfigs;
-import net.guwy.rsimm.content.items.arc_reactors.AbstractArcReactorItem;
 import net.guwy.rsimm.index.RsImmCapabilities;
 import net.guwy.rsimm.index.RsImmSounds;
 import net.minecraft.nbt.CompoundTag;
@@ -9,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -23,12 +21,7 @@ public class ArcReactorSlot {
     }
 
 
-    /**    Used for easily saving and deleting arc reactor data in bulk     *
-     *                                                                      *
-     *     !WARNING! This action will not affect the item you wish to use   *
-     *     make sure to delete the item in your hand after saving           *
-     *     !FOR DEV! Make sure to manually give the arc reactor back        *
-     *                      before deleting any data                        *
+    /** Will override the current arc reactor with a new one. Use after modifying any arc reactor data
      */
     public void setArcReactor(ItemStack arcReactorStack){
         this.arcReactorStack = arcReactorStack;
@@ -60,20 +53,13 @@ public class ArcReactorSlot {
      * @return the extracted arc reactor for custom removal,
      * */
     public static ItemStack removeArcReactor(Player player, boolean playSound, boolean sendFailMessage, boolean giveItem){
-        AtomicReference<ItemStack> toReturn = new AtomicReference<>();
+        AtomicReference<ItemStack> toReturn = new AtomicReference<>(ItemStack.EMPTY);
         player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
             if(arcReactor.getArcReactorStack() != ItemStack.EMPTY){
                 if(player.getItemBySlot(EquipmentSlot.CHEST).isEmpty() || !RsImmServerConfigs.ARC_REACTOR_EXTRACT_INSERT_LIMITS.get()){
 
                     ItemStack itemStack = arcReactor.getArcReactorStack();
-                    CompoundTag tag = new CompoundTag();
-                    tag.putLong("energy", arcReactor.getArcReactorEnergy());
-                    itemStack.setTag(tag);
-                    AbstractArcReactorItem arcReactorItem = (AbstractArcReactorItem) itemStack.getItem();
-
-                    // If energy is 0 then set the CustomModelData to 1 which will render the depleted reactor model if it exists
-                    arcReactorItem.checkAndTransformDepletion(itemStack);
 
                     // Place the arc reactor in inventory
                     if(giveItem) player.getInventory().placeItemBackInInventory(itemStack);

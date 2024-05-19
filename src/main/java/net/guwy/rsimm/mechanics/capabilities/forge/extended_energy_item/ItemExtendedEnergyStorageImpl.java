@@ -16,22 +16,22 @@ public class ItemExtendedEnergyStorageImpl implements IEnergyStorage {
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        return container.receiveEnergy(stack, maxReceive, simulate);
+        return container.receiveForgeEnergy(stack, maxReceive, simulate);
     }
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        return container.extractEnergy(stack, maxExtract, simulate);
+        return container.extractForgeEnergy(stack, maxExtract, simulate);
     }
 
     @Override
     public int getEnergyStored() {
-        return container.getEnergy(stack);
+        return container.getForgeEnergy(stack);
     }
 
     @Override
     public int getMaxEnergyStored() {
-        return container.getCapacity(stack);
+        return container.getForgeEnergyCapacity(stack);
     }
 
     @Override

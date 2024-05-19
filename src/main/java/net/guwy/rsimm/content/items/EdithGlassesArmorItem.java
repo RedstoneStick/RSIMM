@@ -34,8 +34,8 @@ public class EdithGlassesArmorItem extends GeoArmorItem implements IAnimatable {
     public static final String HAS_SLOT_TAG_KEY = "has_arc_reactor_slot";
     public static final String HAS_REACTOR_TAG_KEY = "has_arc_reactor";
     public static final String ENERGY_TAG_KEY = "reactor_energy";
+    public static final String OLD_ENERGY_TAG_KEY = "old_reactor_energy";
     public static final String ENERGY_CAPACITY_TAG_KEY = "reactor_capacity";
-    public static final String LOAD_TAG_KEY = "reactor_load";
     public static final String MAX_OUTPUT_TAG_KEY = "reactor_max_load";
     public static final String REACTOR_ICON_TAG_KEY = "reactor_icon";
 
@@ -49,24 +49,34 @@ public class EdithGlassesArmorItem extends GeoArmorItem implements IAnimatable {
 
         if(!level.isClientSide){
             // Save arc reactor data as ntb to use for client sync
-            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arc_reactor -> {
+            player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 // If has a hole and has a reactor
-                ItemTagUtils.putBoolean(stack, HAS_SLOT_TAG_KEY, arc_reactor.hasArcReactorSlot());
-                ItemTagUtils.putBoolean(stack, HAS_REACTOR_TAG_KEY, arc_reactor.hasArcReactor());
+                ItemTagUtils.putBoolean(stack, HAS_SLOT_TAG_KEY, arcReactor.hasArcReactorSlot());
 
-                // Energy, max energy, load and max output
-                ItemTagUtils.putLong(stack, ENERGY_TAG_KEY, arc_reactor.getArcReactorEnergy());
-                ItemTagUtils.putLong(stack, ENERGY_CAPACITY_TAG_KEY, arc_reactor.getArcReactorEnergyCapacity());
-                ItemTagUtils.putLong(stack, LOAD_TAG_KEY, arc_reactor.getEnergyLastLoad());
-                ItemTagUtils.putLong(stack, MAX_OUTPUT_TAG_KEY, arc_reactor.getArcReactorEnergyOutput());
+                ItemStack reactorStack = arcReactor.getArcReactorStack();
+                if(reactorStack != ItemStack.EMPTY && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
+                    ItemTagUtils.putBoolean(stack, HAS_REACTOR_TAG_KEY, true);
 
-                // Reactor Icon
-                String iconTexture = "";
-                if(Item.byId(arc_reactor.getArcReactorTypeId()) instanceof AbstractArcReactorItem arcReactorItem){
-                    if(null != arcReactorItem.OverlayIcon())
-                        iconTexture = String.valueOf(arcReactorItem.OverlayIcon());
+                    // Energy, max energy, load and max output
+                    ItemTagUtils.putLong(stack, OLD_ENERGY_TAG_KEY, ItemTagUtils.getLong(stack, ENERGY_TAG_KEY));
+                    ItemTagUtils.putLong(stack, ENERGY_TAG_KEY, arcReactorItem.getEnergyStored(reactorStack));
+                    ItemTagUtils.putLong(stack, ENERGY_CAPACITY_TAG_KEY, arcReactorItem.getEnergyCapacity());
+                    ItemTagUtils.putLong(stack, MAX_OUTPUT_TAG_KEY, arcReactorItem.getEnergyExtract());
+
+                    // Reactor Icon
+                    ItemTagUtils.putString(stack, REACTOR_ICON_TAG_KEY, arcReactorItem.OverlayIcon().toString());
+                } else {
+                    ItemTagUtils.putBoolean(stack, HAS_REACTOR_TAG_KEY, false);
+
+                    // Energy, max energy, load and max output
+                    ItemTagUtils.putLong(stack, OLD_ENERGY_TAG_KEY, 0);
+                    ItemTagUtils.putLong(stack, ENERGY_TAG_KEY, 0);
+                    ItemTagUtils.putLong(stack, ENERGY_CAPACITY_TAG_KEY, 0);
+                    ItemTagUtils.putLong(stack, MAX_OUTPUT_TAG_KEY, 0);
+
+                    // Reactor Icon
+                    ItemTagUtils.putString(stack, REACTOR_ICON_TAG_KEY, "");
                 }
-                ItemTagUtils.putString(stack, REACTOR_ICON_TAG_KEY, iconTexture);
             });
         }
     }
@@ -110,15 +120,15 @@ public class EdithGlassesArmorItem extends GeoArmorItem implements IAnimatable {
         });
     }
 
-    /**
-     * Curio Stuff
-     */
-    @Override
-    public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        if(RsImm.isCuriosLoaded()){
-            return Curios.createEdithGlassesProvider(stack);
-        } else {
-            return super.initCapabilities(stack, nbt);
-        }
-    }
+    ///**
+    // * Curio Stuff
+    // */
+    //@Override
+    //public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
+    //    if(RsImm.isCuriosLoaded()){
+    //        return Curios.createEdithGlassesProvider(stack);
+    //    } else {
+    //        return super.initCapabilities(stack, nbt);
+    //    }
+    //}
 }

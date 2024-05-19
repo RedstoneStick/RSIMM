@@ -1,5 +1,6 @@
 package net.guwy.rsimm.content.network_packets;
 
+import net.guwy.rsimm.content.items.arc_reactors.AbstractArcReactorItem;
 import net.guwy.rsimm.enums.KeyActionTypes;
 import net.guwy.rsimm.enums.KeyBinds;
 import net.guwy.rsimm.index.RsImmCapabilities;
@@ -97,13 +98,14 @@ public class KeyBindingGenericC2SPacket {
         Level level = player.getLevel();
 
         player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
-            if(arcReactor.hasArcReactor()){
+            ItemStack reactorStack = arcReactor.getArcReactorStack();
+            if(reactorStack != ItemStack.EMPTY && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
 
                 Component titleText = Component.translatable("arc_reactor.rsimm.chat_display_title").withStyle(ChatFormatting.GOLD);
-                Component nameText = Component.translatable("arc_reactor.rsimm.chat_display_name").append(arcReactor.getArcReactorTypeName()).withStyle(ChatFormatting.AQUA);
+                Component nameText = Component.translatable("arc_reactor.rsimm.chat_display_name").append(reactorStack.getDisplayName().getString()).withStyle(ChatFormatting.AQUA);
                 Component energyText = Component.translatable("arc_reactor.rsimm.energy").withStyle(ChatFormatting.AQUA)
-                        .append(getEnergyBar(arcReactor.getArcReactorEnergyCapacity(), arcReactor.getArcReactorEnergy()))
-                        .withStyle(getDisplayColour(arcReactor.getArcReactorEnergyCapacity(), arcReactor.getArcReactorEnergy()));
+                        .append(getEnergyBar(arcReactorItem.getEnergyCapacity(), arcReactorItem.getEnergyStored(reactorStack)))
+                        .withStyle(getDisplayColour(arcReactorItem.getEnergyCapacity(), arcReactorItem.getEnergyStored(reactorStack)));
 
                 player.sendSystemMessage(titleText);
                 player.sendSystemMessage(nameText);

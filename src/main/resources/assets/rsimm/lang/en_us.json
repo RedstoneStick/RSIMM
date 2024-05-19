@@ -1,5 +1,6 @@
 {
-    "itemGroup.rsimm_tab_main": "IronMan",
+    "itemGroup.rsimm_tab_main": "IronMan: Machines & Materials",
+    "itemGroup.rsimm_tab_arc_reactors": "IronMan: Arc Reactors",
     "itemGroup.rsimm_tab_suit_components": "IronMan: Suit Parts",
     "rsimm.ponder.tag.rsimm": "Iron Man Mod",
     "rsimm.ponder.tag.rsimm.description": "All the blocks with ponder index in Iron Man Mod",
@@ -31,8 +32,13 @@
     "item.rsimm.mark_2_arc_reactor_depleted": "Depleted Mark 2 Arc Reactor",
     "item.rsimm.mark_2_arc_reactor_uncharged": "Uncharged Mark 2 Arc Reactor",
 
-    "item.rsimm.battery_reactor": "Battery Arc Reactor",
-    "tooltip.rsimm.battery_reactor": "§8Literally a AA battery",
+    "item.rsimm.battery_reactor": "Disposable Battery",
+    "tooltip.rsimm.battery_reactor.1": "§8Literally a AA battery",
+    "tooltip.rsimm.battery_reactor.2": "§8Can be used as a arc reactor substitute",
+
+    "item.rsimm.rechargeable_battery_reactor": "Rechargeable Battery",
+    "tooltip.rsimm.rechargeable_battery_reactor.1": "§8AA battery, but rechargeable",
+    "tooltip.rsimm.rechargeable_battery_reactor.2": "§8Can be used as a arc reactor substitute",
 
     "item.rsimm.arc_reactor_connector_armor": "Wearable Arc Reactor Power Connector",
     "tooltip.rsimm.arc_reactor_connector_armor.t.1": "§7Charges any worn piece of",
@@ -150,6 +156,7 @@
 
     "arc_reactor.rsimm.energy": "Energy",
     "arc_reactor.rsimm.energy_output": "Energy Output",
+    "arc_reactor.rsimm.energy_input": "Energy Input",
     "arc_reactor.rsimm.idle_drain": "Idle Drain",
     "arc_reactor.rsimm.depleted": "It's useless",
     "arc_reactor.rsimm.rechargeable": "Can be recharged",
