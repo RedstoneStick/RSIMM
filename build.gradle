@@ -25,7 +25,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.0.11-1.19.2'
+version = '0.0.12-1.19.2'
 group = 'net.guwy.rsimm' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'rsimm'
 
