@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "zkz",
-    "yay",
+    "yzy",
+    "kak",
     " x "
   ],
   "key": {
@@ -10,13 +10,13 @@
       "tag": "forge:plates/iron"
     },
     "z": {
-      "tag": "forge:plates/copper"
+      "item": "minecraft:copper_ingot"
     },
     "x": {
       "item": "sticky_foundations:insulator"
     },
     "k": {
-      "tag": "forge:ingots/lead"
+      "tag": "forge:plates/lead"
     },
     "a": {
       "item": "minecraft:redstone"

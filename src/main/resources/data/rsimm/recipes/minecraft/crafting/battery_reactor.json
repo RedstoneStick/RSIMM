@@ -7,19 +7,19 @@
   ],
   "key": {
     "y": {
-      "tag": "forge:plates/iron"
+      "item": "minecraft:paper"
     },
     "z": {
-      "tag": "forge:plates/copper"
+      "item": "minecraft:iron_ingot"
     },
     "x": {
-      "item": "sticky_foundations:insulator"
+      "item": "minecraft:lightning_rod"
     },
     "k": {
-      "tag": "forge:ingots/lead"
+      "item": "minecraft:copper_ingot"
     },
     "a": {
-      "item": "minecraft:redstone"
+      "tag": "minecraft:coals"
     }
   },
   "result": {

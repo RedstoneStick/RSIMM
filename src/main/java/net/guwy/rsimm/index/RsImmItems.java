@@ -20,7 +20,7 @@ public class RsImmItems {
 
     // Tools
     public static final RegistryObject<Item> CHEST_CUTTER = ITEMS.register("chest_cutter",
-            () -> new ChestCutterItem(new Item.Properties().tab(RsImmCreativeModeTabs.MAIN).stacksTo(1)));
+            () -> new ChestCutterItem(new Item.Properties().tab(RsImmCreativeModeTabs.MAIN).durability(3)));
 
 
 

@@ -62,7 +62,7 @@ public class ChestCutterItem extends Item {
         // when crouching is reserved for stealing a arc reactor
         // check interactLivingEntity for more
         if(!pLevel.isClientSide && !pPlayer.isCrouching()){
-            tryAndCutHole(pPlayer, true);
+            tryAndCutHole(pPlayer, true, pUsedHand);
             pPlayer.getCooldowns().addCooldown(RsImmItems.CHEST_CUTTER.get(), 40);
         }
         return super.use(pLevel, pPlayer, pUsedHand);
@@ -74,7 +74,7 @@ public class ChestCutterItem extends Item {
             Player targetPlayer = (Player) pInteractionTarget;
 
             if(pPlayer.isCrouching()){
-                tryAndStealReactor(pPlayer, targetPlayer);
+                tryAndStealReactor(pPlayer, targetPlayer, pUsedHand);
                 pPlayer.getCooldowns().addCooldown(RsImmItems.CHEST_CUTTER.get(), 40);
             }
         }
@@ -86,7 +86,7 @@ public class ChestCutterItem extends Item {
 
     /** @param pPlayer player
      *  @param isSelfCaused displays a fail message if the hole can't be carved*/
-    public static void tryAndCutHole(Player pPlayer, boolean isSelfCaused){
+    public static void tryAndCutHole(Player pPlayer, boolean isSelfCaused, InteractionHand usedHand){
         pPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
 
             // Hole Cutting On Yourself
@@ -99,13 +99,19 @@ public class ChestCutterItem extends Item {
                 // Effect to handle damaging over time
                 pPlayer.addEffect(new MobEffectInstance(RsImmEffects.CHEST_CUTTING_HURT.get(),
                         30, 1, false, false, false));
+
+                if(usedHand != null){
+                    pPlayer.getItemInHand(usedHand).hurtAndBreak(1, pPlayer, (uPlayer) -> {
+                        uPlayer.broadcastBreakEvent(usedHand);
+                    });
+                }
             }   else if(isSelfCaused) {
                 pPlayer.sendSystemMessage(Component.translatable("message.rsimm.chest_cutter.don't_have_slot"));
             }
         });
     }
 
-    public static void tryAndStealReactor(Player player, Player targetPlayer){
+    public static void tryAndStealReactor(Player player, Player targetPlayer, InteractionHand usedHand){
         targetPlayer.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(targetReactor -> {
             if(targetReactor.hasArcReactorSlot() && targetReactor.getArcReactorStack() != ItemStack.EMPTY){
 
@@ -114,6 +120,12 @@ public class ChestCutterItem extends Item {
                     // Extract and give reactor
                     ItemStack removedReactor = ArcReactorSlot.removeArcReactor(targetPlayer, false, false, false);
                     player.getInventory().placeItemBackInInventory(removedReactor);
+
+                    if(usedHand != null){
+                        player.getItemInHand(usedHand).hurtAndBreak(1, player, (uPlayer) -> {
+                            uPlayer.broadcastBreakEvent(usedHand);
+                        });
+                    }
 
                     // Add effects
                     player.addEffect(new MobEffectInstance(RsImmEffects.STOLE_REACTOR.get(), 6000, 0, false, false, true));
@@ -164,7 +176,7 @@ public class ChestCutterItem extends Item {
         }
 
         // Carve a hole in the culprits chest if he doesn't have one yet
-        tryAndCutHole(culprit, false);
+        tryAndCutHole(culprit, false, null);
 
         // Remove the effects
         culprit.removeEffect(RsImmEffects.STOLE_REACTOR.get());

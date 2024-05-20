@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "zyz",
+    "xkx"
+  ],
+  "key": {
+    "y": {
+      "item": "rsimm:mark_2_arc_reactor"
+    },
+    "z": {
+      "tag": "forge:plates/iron"
+    },
+    "x": {
+      "item": "sticky_foundations:reinforced_glass"
+    },
+    "k": {
+      "item": "sticky_foundations:circuitry_overclocked"
+    }
+  },
+  "result": {
+    "item": "rsimm:edith_glasses"
+  }
+}
