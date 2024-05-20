@@ -26,32 +26,37 @@ public class ChestSlotCheck {
             player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 if(arcReactor.hasArcReactorSlot()){
 
-
                     //The part that handles what happens if the player doesn't have energy in its reactor and similar
                     // checks if the player has an arc reactor with energy
                     // if not adds the required effect to handle the situation
                     ItemStack reactorStack = arcReactor.getArcReactorStack();
-                    if(reactorStack == ItemStack.EMPTY && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
-                        if(arcReactorItem.getEnergyStored(reactorStack) <= 0 && !player.hasEffect(RsImmEffects.MISSING_REACTOR.get())){
+                    if(reactorStack != ItemStack.EMPTY
+                            && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
+
+                        if(arcReactorItem.getEnergyStored(reactorStack) <= 0
+                                && !player.hasEffect(RsImmEffects.MISSING_REACTOR.get())){
+                            // gives the missing reactor effect when there is no energy in the arc reactor
                             RsImmNetworking.sendToPlayer(new MissingArcReactorS2CPacket(RsImmServerConfigs.ARC_REACTOR_DEATH_TIME.get()), (ServerPlayer) player);
                         }
-
-
 
                         //The part that handles data transmission to the clients for rendering
                         //sends the arc reactor with its energy if it exists in player
                         //gets the energy percentage for use in transmission
                         double energyPercentage = (double) arcReactorItem.getEnergyStored(reactorStack) / arcReactorItem.getEnergyCapacity();
                         int id = Item.getId(arcReactorItem);
-                        GenericArcReactorItem item = (GenericArcReactorItem) Item.byId(id);
                         RsImmNetworking.sendToClients(new PlayerArcReactorClientSyncS2CPacket(id, player.getUUID(), energyPercentage));
                     }
                     // if no reactor is present sends a blank slate with the uuid which the client will use it to remove the arc reactor data from itself
                     else {
                         RsImmNetworking.sendToClients(new PlayerArcReactorClientSyncS2CPacket(0, player.getUUID(), 0));
 
+                        if(!player.hasEffect(RsImmEffects.MISSING_REACTOR.get())){
+                            // gives the missing reactor effect when there is no arc reactor
+                            RsImmNetworking.sendToPlayer(new MissingArcReactorS2CPacket(RsImmServerConfigs.ARC_REACTOR_DEATH_TIME.get()), (ServerPlayer) player);
+                        }
+
                         // if the player has regen 3 without a reactor, the arc reactor slot will dissapear
-                        if(player.hasEffect(MobEffects.REGENERATION) && player.getEffect(MobEffects.REGENERATION).getAmplifier() > 2){
+                        if(player.hasEffect(MobEffects.REGENERATION) && player.getEffect(MobEffects.REGENERATION).getAmplifier() >= 2){
                             arcReactor.setHasArcReactorSlot(false);
                             player.level.playSound(null, player, SoundEvents.CONDUIT_DEACTIVATE, SoundSource.PLAYERS, 1, 1);
                         }

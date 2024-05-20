@@ -15,7 +15,7 @@ public class ReactorUtilization {
                         arcReactorItem.playerEquippedTickAction(event.player, reactorStack);
                     }
                     // Updates the player reactor
-                    arcReactor.setArcReactor(reactorStack);
+                    arcReactor.setArcReactorStack(reactorStack);
                 }
             });
         }

@@ -70,7 +70,8 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
         // Lowers the reactor energy based on idle drain
         if(player.tickCount % 20 == 0){
             if(arcReactor.getItem() instanceof AbstractArcReactorItem arcReactorItem){
-                arcReactorItem.setEnergyStored(arcReactor, arcReactorItem.getEnergyStored(arcReactor) - arcReactorItem.idleDrain);
+                long val = arcReactorItem.getEnergyStored(arcReactor) - arcReactorItem.idleDrain;
+                arcReactorItem.setEnergyStored(arcReactor, Math.max(0, val));
             }
         }
 
@@ -168,7 +169,7 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
                     if (arcReactor.getArcReactorStack() == ItemStack.EMPTY) {
                         if(pPlayer.getItemBySlot(EquipmentSlot.CHEST).isEmpty() || !RsImmServerConfigs.ARC_REACTOR_EXTRACT_INSERT_LIMITS.get()){
                             // bake the arc reactor to the player as capability
-                            arcReactor.setArcReactor(itemStack);
+                            arcReactor.setArcReactorStack(itemStack);
                             // remove the item
                             itemStack.setCount(0);
 

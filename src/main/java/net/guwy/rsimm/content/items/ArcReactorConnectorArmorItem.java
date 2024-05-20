@@ -54,7 +54,7 @@ public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnima
             player.getCapability(RsImmCapabilities.Player.ARC_REACTOR).ifPresent(arcReactor -> {
                 ItemStack reactorStack = arcReactor.getArcReactorStack();
                 if(reactorStack != ItemStack.EMPTY && reactorStack.getItem() instanceof AbstractArcReactorItem arcReactorItem){
-                    AtomicLong expandableEnergy = new AtomicLong(Math.min(arcReactorItem.getEnergyExtract(), arcReactorItem.getEnergyStored(reactorStack)));
+                    final long[] expandableEnergy = {Math.min(arcReactorItem.getEnergyExtract(), arcReactorItem.getEnergyStored(reactorStack))};
 
                     // gets each equipment slot 1 by 1 (includes hands)
                     for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
@@ -63,8 +63,9 @@ public class ArcReactorConnectorArmorItem extends GeoArmorItem implements IAnima
                         itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
 
                             // sends energy and reduces the expandable energy amount
-                            int energySent = itemEnergy.receiveEnergy((int) Math.max(0, Math.min(Integer.MAX_VALUE, expandableEnergy.get())), false);
-                            expandableEnergy.addAndGet(-energySent);
+                            int energySent = itemEnergy.receiveEnergy((int) Math.max(0, Math.min(Integer.MAX_VALUE, expandableEnergy[0])), false);
+                            expandableEnergy[0] = expandableEnergy[0] - energySent;
+                            arcReactorItem.setEnergyStored(reactorStack, arcReactorItem.getEnergyStored(reactorStack) - energySent);
                         });
                     }
                 }

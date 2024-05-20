@@ -61,7 +61,7 @@ public class RsImmArcReactorItems {
 
     public static final RegistryObject<Item> RECHARGEABLE_BATTERY_REACTOR = ITEMS.register("rechargeable_battery_reactor",
             () -> new RechargeableArcReactorItem(new Item.Properties().stacksTo(1).tab(RsImmCreativeModeTabs.ARC_REACTORS),
-                    6000, 50, 1, false,
+                    6000, 5, 1, false,
                     new ResourceLocation(RsImm.MOD_ID, "textures/overlay/armor/edith_glasses/battery_overlay_sprites.png")){
                 @Override
                 public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {

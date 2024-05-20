@@ -91,6 +91,11 @@ public class ModEvents {
         public static void finishUsingItemEvent(LivingEntityUseItemEvent.Finish event) {
             LivingEntityUseItemEventHandler.finish(event);
         }
+
+        @SubscribeEvent
+        public static void tickUsingItemEvent(LivingEntityUseItemEvent.Tick event) {
+            LivingEntityUseItemEventHandler.tick(event);
+        }
     }
 
     @Mod.EventBusSubscriber(modid = RsImm.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

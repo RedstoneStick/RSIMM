@@ -18,12 +18,12 @@ public class LivingEntityUseItemEventHandler {
     }
 
     public static void tick(LivingEntityUseItemEvent.Tick event){
-        if(event.getEntity() instanceof Player player){
+        if(event.getEntity() instanceof Player player && !player.level.isClientSide){
             ItemStack itemStack = event.getItem();
 
-            if(event.getDuration() == event.getItem().getUseDuration() && itemStack.getItem() == Items.GOLDEN_APPLE){
-                if(player.hasEffect(MobEffects.REGENERATION) && player.getEffect(MobEffects.REGENERATION).getAmplifier() >= 2){
-                    event.getItem().getFoodProperties(player).getEffects().add(new Pair<>(new MobEffectInstance(MobEffects.REGENERATION, 60, 3), 1f));
+            if(event.getEntity().getUseItemRemainingTicks() == 1 && itemStack.getItem() == Items.GOLDEN_APPLE){
+                if(player.hasEffect(MobEffects.REGENERATION) && player.getEffect(MobEffects.REGENERATION).getAmplifier() >= 1){
+                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, 2));
                 }
             }
         }

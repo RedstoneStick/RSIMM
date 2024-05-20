@@ -20,13 +20,6 @@ public class ArcReactorSlot {
     public ArcReactorSlot() {
     }
 
-
-    /** Will override the current arc reactor with a new one. Use after modifying any arc reactor data
-     */
-    public void setArcReactor(ItemStack arcReactorStack){
-        this.arcReactorStack = arcReactorStack;
-    }
-
     /** Used for deleting the arc reactor data from the player,
      * use {@link ArcReactorSlot#removeArcReactor(Player)}
      * for removing the arc reactor from a player */
@@ -97,7 +90,7 @@ public class ArcReactorSlot {
         return this.arcReactorStack;
     }
     public void setArcReactorStack(ItemStack arcReactorStack) {
-        this.arcReactorStack = arcReactorStack;
+        this.arcReactorStack = arcReactorStack.copy();
     }
 
 
