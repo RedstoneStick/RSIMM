@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "zkz",
+    "yay",
+    " x "
+  ],
+  "key": {
+    "y": {
+      "tag": "forge:plates/iron"
+    },
+    "z": {
+      "tag": "forge:plates/copper"
+    },
+    "x": {
+      "item": "sticky_foundations:insulator"
+    },
+    "k": {
+      "tag": "forge:ingots/lead"
+    },
+    "a": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "rsimm:rechargeable_battery_reactor"
+  }
+}

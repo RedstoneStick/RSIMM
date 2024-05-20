@@ -63,7 +63,7 @@ A semi realistic and movie focused iron man mod with lots of survival elements
     side="BOTH"
 [[dependencies.rsimm]]
 modId="create"
-mandatory=false
+mandatory=true
 versionRange="[0.3.0,)"
 ordering="NONE"
 side="BOTH"

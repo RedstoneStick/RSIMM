@@ -107,13 +107,14 @@ public abstract class AbstractArcReactorItem extends Item implements IItemExtend
                     .append(getTooltipBar(getEnergyCapacity(), tooltipEnergy(pStack)))
                     .withStyle(getDisplayColour(getEnergyCapacity(), tooltipEnergy(pStack))));
 
-            if (getEnergyReceive() > 0){
-                pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.rechargeable")
-                        .withStyle(ChatFormatting.DARK_GRAY));
-            }
-            else if(tooltipEnergy(pStack) <= 0){
-                pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.depleted")
-                        .withStyle(ChatFormatting.DARK_GRAY));
+            if(tooltipEnergy(pStack) <= 0){
+                if (getEnergyReceive() > 0){
+                    pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.rechargeable")
+                            .withStyle(ChatFormatting.DARK_GRAY));
+                } else {
+                    pTooltipComponents.add(Component.translatable("arc_reactor.rsimm.depleted")
+                            .withStyle(ChatFormatting.DARK_GRAY));
+                }
             }
 
         }
