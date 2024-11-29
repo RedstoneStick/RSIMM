@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "rsimm:item/armor/mark_1/mark_1_boots"
-  }
-}
