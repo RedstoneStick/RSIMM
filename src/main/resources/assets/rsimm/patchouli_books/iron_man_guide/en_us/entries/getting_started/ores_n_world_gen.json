@@ -1,0 +1,139 @@
+{
+  "name": "Ores & World Gen",
+  "icon": "rsimm:deepslate_palladium_ore",
+  "category": "rsimm:getting_started_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "While most ores you'll need are added by other mods. RedstoneStick's Iron Man Mod adds a few crucial ores of its own to the overworld to be used in crafting the mods items."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The next pages will explain what ores are added, how they spawn, how to harvest them and will give a brief explanation on their uses.$(br2)Additionally some ores spawn as a part of large veins that include more than just that ore. So they can be a good source of other materials than its primary content."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Palladium$() is a common overworld ore that can be found between Y=-100 and Y=-20 with a density of 2 veins per chunk, in a triangular distribution. Meaning you'll find more of them around Y=-60$(br2)Additional 2 veins per chunk can be found buried in the same altitudes.",
+      "title": "Palladium"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "text": "Palladium Ore in Stone.",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "rsimm:palladium_ore"
+        }
+      },
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Magnesium$() actually makes up a large portion of the overworlds soil. But its not enough to be useful to us.$(br2)We can however find enough magnesium concentration in certain gravel patches located in $(2)Cold Ocean$() biomes, once every 4 chunks.",
+      "title": "Magnesium"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "text": "Magnesium rich Gravel.",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "rsimm:gravel_magnesium"
+        }
+      },
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Magnesium Rich Gravel$() is not so similar to the ores you're used to seeing, its more akin to $(2)Suspicious Gravel$() than a actual ore.$(br2)Thus you require a $(2)Brush$() to extract the magnesium from it.$(br2)Good news is its much sturdier than Suspicious Gravel, meaning you can pick it up and transport it using a shovel.",
+      "title": "Magnesium Harvesting"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["rsimm:textures/gui/book/magnesium_gravel_demo_2.png", "rsimm:textures/gui/book/magnesium_gravel_demo_3.png", "rsimm:textures/gui/book/magnesium_gravel_demo_4.png"],
+      "text": "Naturally occurring Magnesium Rich Gravel and the brushing process. (With added lights).",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Platinum$() is one of the rarest ores you can find in overworld.$(br2)Its not possible to find it by itself. Instead small amounts can be found in $(2)Placer Deposits$() mixed with other rare ores.$(br2)Next few pages will explain $(2)Placer Deposits$() in detail.",
+      "title": "Platinum"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "text": "Platinum Ore in Black Sand.",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "rsimm:black_sand_platinum_ore"
+        }
+      },
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Placer Deposits$() form in $(2)River$() biomes as sediment collecting on the floor. The are quite rare and can be found only once every 32 chunks.$(br2)They can be distinguished by the gold ore that can be found on its top layer.",
+      "title": "Placer Deposits"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["rsimm:textures/gui/book/placer_deposit_demo_1.png"],
+      "text": "Placer Deposit found in Rivers.",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(2)Placer Deposits$() form as layers;$(br2)- High layers contain only $(2)Black Sand$() and trace amounts $(2)Gold$().$(br)- Middle layers contain higher amounts of $(2)Gold$() and small amounts of $(2)Platinum$().$(br)- Lower layers are mostly composed of $(2)Gold$(), $(2)Platinum$() and trace amounts of $(2)Diamond$().",
+      "title": "Deposit Formation"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["rsimm:textures/gui/book/placer_deposit_demo_2.png"],
+      "text": "Placer Deposit cut out to show its layer formation.",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Simply breaking any $(2)Black Sand$() ore variant without silk touch will cause it to drop its ore.$(br2)These drops are affected by $(2)Fortune$().",
+      "title": "Black Sand Harvesting"
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "rsimm:smelting/iron_ingot_from_smelting_black_sand",
+      "title": "Smelting",
+      "text": "You can also smelt the $(2)Black Sand$() block itself to get iron ingots.$(br2)All in all $(2)Placer Deposits$() are a source of lots of valuable materials. And the only source of $(2)Platinum$() available."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While 'RedstoneStick's Iron Man Mod' adds its own ores. It heavily relies on its parent mod 'Radiated' for the base ores.$(br2)The information about all the ores that might be necessary and more, can be found on Radiated's own guide book.",
+      "title": "More Ores"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hbm:guide_book_recipe",
+      "title": "Radiated Guide Book"
+    }
+  ]
+}

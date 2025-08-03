@@ -1,0 +1,12 @@
+{
+  "name": "Introduction",
+  "icon": "minecraft:light",
+  "category": "rsimm:getting_started_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "WIP"
+    }
+  ]
+}

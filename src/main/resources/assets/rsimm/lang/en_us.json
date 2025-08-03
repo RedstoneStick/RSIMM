@@ -1,0 +1,67 @@
+{
+  "itemGroup.rsimm.dev": "IronMan Development",
+  "itemGroup.rsimm.base": "IronMan",
+  "itemGroup.rsimm.parts": "IronMan: Armor Parts",
+
+
+
+  "block.rsimm.palladium_ore": "Palladium Ore",
+  "block.rsimm.deepslate_palladium_ore": "Deepslate Palladium Ore",
+  "block.rsimm.palladium_block": "Block of Palladium",
+  "item.rsimm.palladium_ingot": "Palladium Ingot",
+  "item.rsimm.palladium_nugget": "Palladium Nugget",
+  "block.rsimm.gravel_magnesium": "Magnesium Rich Gravel",
+  "block.rsimm.raw_magnesium_block": "Block of Raw Magnesium",
+  "block.rsimm.magnesium_block": "Block of Magnesium",
+  "item.rsimm.raw_magnesium": "Raw Magnesium",
+  "item.rsimm.magnesium_ingot": "Magnesium Ingot",
+  "item.rsimm.magnesium_nugget": "Magnesium Nugget",
+  "block.rsimm.black_sand": "Black Sand",
+  "block.rsimm.black_sand_diamond_ore": "Black Sand Diamond Ore",
+  "block.rsimm.black_sand_gold_ore": "Black Sand Gold Ore",
+  "block.rsimm.black_sand_platinum_ore": "Black Sand Platinum Ore",
+  "block.rsimm.platinum_block": "Block of Platinum",
+  "item.rsimm.platinum_ingot": "Platinum Ingot",
+  "item.rsimm.platinum_nugget": "Platinum Nugget",
+
+
+
+  "key.category.rsimm.main": "Iron Man",
+  "key.rsimm.armor": "Armor Controls",
+  "key.rsimm.repulsor": "Repulsor Selection",
+  "key.rsimm.chest": "Reactor Controls",
+  "key.rsimm.flight": "Activate Flight",
+  "key.rsimm.weapon": "Weapon Selection",
+  "key.rsimm.fire": "Fire Selected Weapon",
+
+  "tootlip.rsimm.hold": "Hold",
+  "tootlip.rsimm.to_display_properties": "to display properties",
+  "tootlip.rsimm.armor_part.type": "Part Type",
+  "tootlip.rsimm.armor_part.durability": "Durability",
+  "tootlip.rsimm.armor_part.weight": "Weight",
+  "tootlip.rsimm.armor_part.energy": "Energy",
+  "tootlip.rsimm.armor_part.energy_input": "Energy Input",
+  "tootlip.rsimm.armor_part.energy_output": "Energy Output",
+  "tootlip.rsimm.armor_part.weight_limit": "Weight Limit",
+  "tootlip.rsimm.armor_part.speed_multiplier": "Base Speed Multiplier",
+  "tootlip.rsimm.armor_part.energy_consumption": "Energy Consumption",
+
+  "text.rsimm.armor_part_slot.chassis": "Chassis",
+  "text.rsimm.armor_part_slot.hull": "Hull",
+  "text.rsimm.armor_part_slot.power_supply": "Power Supply",
+  "text.rsimm.armor_part_slot.circuitry": "Circuitry",
+  "text.rsimm.armor_part_slot.repusors": "Repulsors",
+  "text.rsimm.armor_part_slot.extra_thrusters": "Extra Thrusters",
+  "text.rsimm.armor_part_slot.air_supply": "Air Supply",
+  "text.rsimm.armor_part_slot.visor": "Visor",
+  "text.rsimm.armor_part_slot.backpack": "Backpack",
+  "text.rsimm.armor_part_slot.weapons": "Weapons",
+
+
+
+  "rsimm.configuration.preferences": "Preferences",
+  "rsimm.configuration.key_binds": "Key-Binds",
+  "rsimm.configuration.hold_time": "Hold Time",
+  "rsimm.configuration.debug": "Debug",
+  "rsimm.configuration.debug_key_bind_inputs": "Debug: Key-bind Inputs"
+}

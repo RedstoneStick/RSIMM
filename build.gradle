@@ -36,6 +36,15 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 base {
@@ -136,7 +145,14 @@ dependencies {
 
     // Runtime only mods
     localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    localRuntime "curse.maven:jade-324717:${jade_id}"
+    localRuntime "curse.maven:jade-324717:${jade_version_id}"
+    localRuntime "curse.maven:mekanism-268560:${mekanism_version_id}"
+
+    // Required Dependencies
+    implementation("software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
+    localRuntime "curse.maven:patchouli-306770:${patchouli_version_id}"
+    localRuntime "curse.maven:radiated-830918:${radiated_version_id}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

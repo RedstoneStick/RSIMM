@@ -1,0 +1,45 @@
+{
+  "type": "rsimm:placer_deposit",
+  "config": {
+    "baseState": {
+      "Name": "rsimm:black_sand"
+    },
+    "commonStates": [
+      {
+        "Name": "rsimm:black_sand"
+      },
+      {
+        "Name": "rsimm:black_sand_gold_ore"
+      },
+      {
+        "Name": "rsimm:black_sand_gold_ore"
+      }
+    ],
+    "depth": 6,
+    "depthRandomizationPercent": 0.2,
+    "radius": 9,
+    "radiusRandomizationPercent": 0.5,
+    "rareStates": [
+      {
+        "Name": "rsimm:black_sand"
+      },
+      {
+        "Name": "rsimm:black_sand_diamond_ore"
+      },
+      {
+        "Name": "rsimm:black_sand_diamond_ore"
+      },
+      {
+        "Name": "rsimm:black_sand_diamond_ore"
+      }
+    ],
+    "uncommonStates": [
+      {
+        "Name": "rsimm:black_sand"
+      },
+      {
+        "Name": "rsimm:black_sand_platinum_ore"
+      }
+    ]
+  }
+}

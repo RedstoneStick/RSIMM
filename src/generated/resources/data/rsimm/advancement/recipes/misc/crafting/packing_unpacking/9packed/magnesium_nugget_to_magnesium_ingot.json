@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magnesium_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rsimm:magnesium_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rsimm:crafting/packing_unpacking/9packed/magnesium_nugget_to_magnesium_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_magnesium_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rsimm:crafting/packing_unpacking/9packed/magnesium_nugget_to_magnesium_ingot"
+    ]
+  }
+}

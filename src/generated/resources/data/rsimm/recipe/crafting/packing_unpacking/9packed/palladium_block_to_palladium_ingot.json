@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rsimm:palladium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "rsimm:palladium_ingot"
+  }
+}

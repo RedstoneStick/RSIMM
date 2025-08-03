@@ -1,0 +1,22 @@
+// 1.21.1	2025-08-03T19:58:38.4868098	Tags for minecraft:block mod id rsimm
+65417782281bf80f401520345b396ffef1c4407e data/c/tags/block/black_sands.json
+a7a74c8eb10a91ab404974aefb5ff4b19f41d0fa data/c/tags/block/black_sands/diamond.json
+fc351fd877875f022bb562cdcf9b31f71d29049d data/c/tags/block/black_sands/gold.json
+559515982c91d409a979fea491bb7a1915880742 data/c/tags/block/black_sands/platinum.json
+b493de1e2184f6190261ce33f6f76291a90a1ec0 data/c/tags/block/ores.json
+b493de1e2184f6190261ce33f6f76291a90a1ec0 data/c/tags/block/ores/palladium.json
+28233ec35005346e90456f3ca646d1e1fc70bf92 data/c/tags/block/storage_blocks.json
+def93b015ca025d0980baccaf6b1700a5479b1be data/c/tags/block/storage_blocks/magnesium.json
+33fcd10dff5962d79be1b1a41d03ec24f70966a7 data/c/tags/block/storage_blocks/palladium.json
+09a42ad343d24f87a7230a8748c4186c135f9700 data/c/tags/block/storage_blocks/platinum.json
+5e518639af08660b56078b378b374aee03b8cee1 data/c/tags/block/storage_blocks/raw_magnesium.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/incorrect_for_diamond_tool.json
+2c7a5bcb8bd517225e4226ee75137081c5bfdd7f data/minecraft/tags/block/incorrect_for_gold_tool.json
+2c7a5bcb8bd517225e4226ee75137081c5bfdd7f data/minecraft/tags/block/incorrect_for_iron_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/incorrect_for_netherite_tool.json
+2c7a5bcb8bd517225e4226ee75137081c5bfdd7f data/minecraft/tags/block/incorrect_for_stone_tool.json
+679c50a1ec5201378d112cd09701815f49ad1103 data/minecraft/tags/block/incorrect_for_wooden_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/mineable/axe.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/mineable/hoe.json
+d7a1d8e12b173dbacc018e15c68079c18161ce62 data/minecraft/tags/block/mineable/pickaxe.json
+2017dc9a7b0e47f7caa2bc6a744c5f1ce9b328ef data/minecraft/tags/block/mineable/shovel.json

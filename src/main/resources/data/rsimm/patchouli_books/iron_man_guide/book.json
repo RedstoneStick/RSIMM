@@ -1,0 +1,7 @@
+{
+  "name": "Guide to Iron Man",
+  "landing_text": " Everything you need to know about RedstoneStick's Iron Man mod.$(br) Includes everything from getting started to building your first Iron Man armor.$(br) This book is still $(5)$(l)$(n)WIP$() and subject to change.",
+  "version": 1,
+  "creative_tab": "minecraft:tools_and_utilities",
+  "use_resource_pack": true
+}

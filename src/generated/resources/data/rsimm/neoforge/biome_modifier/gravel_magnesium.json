@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_ocean",
+  "features": "rsimm:gravel_magnesium",
+  "step": "underground_decoration"
+}

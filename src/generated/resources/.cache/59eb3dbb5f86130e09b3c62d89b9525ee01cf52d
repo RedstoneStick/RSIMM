@@ -1,0 +1,12 @@
+// 1.21.1	2025-08-03T19:02:41.4239388	Loot Tables
+252847d42419ce7844786a7ddd0bcbdcaac6155a data/rsimm/loot_table/blocks/black_sand.json
+8f21b1f22a448028b8b89940e1196619fb300f77 data/rsimm/loot_table/blocks/black_sand_diamond_ore.json
+b8a371717441708a89e57192170982161af2afcc data/rsimm/loot_table/blocks/black_sand_gold_ore.json
+a063b34b29567fdde136add0751707b54549e122 data/rsimm/loot_table/blocks/black_sand_platinum_ore.json
+24690858e1302cb808c5a97922cd62818f3b04cf data/rsimm/loot_table/blocks/deepslate_palladium_ore.json
+0c1ee1a00da50e63fc54fa2f427c50cd9661f670 data/rsimm/loot_table/blocks/gravel_magnesium.json
+90b0049d0e1d36fd2f84cc1fe5c4005b78c3f730 data/rsimm/loot_table/blocks/magnesium_block.json
+3bb21601a5cd2b76c3d2a7a873dcee869c068ee8 data/rsimm/loot_table/blocks/palladium_block.json
+39070d39b7c0552c02291462bbc3888e457b85a9 data/rsimm/loot_table/blocks/palladium_ore.json
+7bcca9f997eb355dd758d8e3acdae61ec8a710a1 data/rsimm/loot_table/blocks/platinum_block.json
+0e006b9f4468397588ad51b40b93fa3ed6dd6d8e data/rsimm/loot_table/blocks/raw_magnesium_block.json

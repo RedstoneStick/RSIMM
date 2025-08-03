@@ -1,0 +1,16 @@
+{
+  "name": "Chassis",
+  "icon": "minecraft:barrier",
+  "category": "rsimm:suit_parts_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Chassis is the core of your armor.$(br2)All other armor parts attach to the chassis. Different chassis has different components that can be attached to it.$(br2)You cannot make a suit without a chassis. If your chassis breaks, your suit will be destroyed with it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "WIP"
+    }
+  ]
+}
