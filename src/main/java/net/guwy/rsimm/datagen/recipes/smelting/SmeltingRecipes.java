@@ -35,11 +35,11 @@ public class SmeltingRecipes extends RecipeProvider implements IConditionBuilder
         });
 
         blastingMap.forEach((unsmeltedItem, smeltingResultItem) -> {
-            blastingRecipe(recipeOutput, unsmeltedItem, RecipeCategory.MISC, smeltingResultItem, 1, 200, smeltingResultItem.asItem().getDescription().getString());
+            blastingRecipe(recipeOutput, unsmeltedItem, RecipeCategory.MISC, smeltingResultItem, 1, 100, smeltingResultItem.asItem().getDescription().getString());
         });
 
         smokingMap.forEach((unsmeltedItem, smeltingResultItem) -> {
-            smokingRecipe(recipeOutput, unsmeltedItem, RecipeCategory.MISC, smeltingResultItem, 1, 200, smeltingResultItem.asItem().getDescription().getString());
+            smokingRecipe(recipeOutput, unsmeltedItem, RecipeCategory.MISC, smeltingResultItem, 1, 100, smeltingResultItem.asItem().getDescription().getString());
         });
     }
 
