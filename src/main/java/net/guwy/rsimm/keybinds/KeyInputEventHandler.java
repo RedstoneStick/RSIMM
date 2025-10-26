@@ -63,6 +63,7 @@ public class KeyInputEventHandler {
             //3) custom functionality
             //TODO arc reactor key-bind functionality
         }
+        // Cancels and subsequent keybind checks (potentially from other mods) if the pressed keybind does something
         return !process;
     }
 
@@ -85,7 +86,8 @@ public class KeyInputEventHandler {
 
         @SubscribeEvent
         public static void keyInput(ClientTickEvent.Post event) {
-            int holdDurForTick = holdThreshold.get();
+            //int holdDurForTick = holdThreshold.get();
+            int holdDurForTick = holdThreshold!=null ? holdThreshold.get() : ModConfigs.Client.KEY_BIND_HOLD_THRESHOLD.getDefault();
 
             if (ModKeyBindings.ARMOR_KEY.isDown()) {
                 //Hold Start Action

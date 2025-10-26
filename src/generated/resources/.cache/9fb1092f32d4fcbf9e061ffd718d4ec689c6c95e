@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-03T19:02:41.4259436	Recipes
+// 1.21.1	2025-08-23T18:22:53.5811704	Recipes
 04bafa26f5d6429b3959043ab0e39a6f07b388bc data/rsimm/advancement/recipes/misc/blasting/iron_ingot_from_blasting_black_sand.json
 7426e62905f5a3ff4a64c687de39a4061a643e2e data/rsimm/advancement/recipes/misc/crafting/packing_unpacking/9packed/magnesium_block_to_magnesium_ingot.json
 661f3a1c4c69ee63a120161715e50c9ac27cbc93 data/rsimm/advancement/recipes/misc/crafting/packing_unpacking/9packed/magnesium_ingot_to_magnesium_block.json
@@ -15,7 +15,7 @@
 671e3d09f6161b9938de5e00d33bf4f8d9b2e89a data/rsimm/advancement/recipes/misc/crafting/packing_unpacking/9packed/raw_magnesium_block_to_raw_magnesium.json
 f7b938bc7ea594659983ba2e54a5ad8f840b3877 data/rsimm/advancement/recipes/misc/crafting/packing_unpacking/9packed/raw_magnesium_to_raw_magnesium_block.json
 87a8db821d3ed7a4400e19bea709edd2e63aa30d data/rsimm/advancement/recipes/misc/smelting/iron_ingot_from_smelting_black_sand.json
-2fcc88b3a14ec37da9b0623a8dbd0cb919bc1be7 data/rsimm/recipe/blasting/iron_ingot_from_blasting_black_sand.json
+f6124788b322c1ac5bf7b169f8882540ebd335b7 data/rsimm/recipe/blasting/iron_ingot_from_blasting_black_sand.json
 4aa06d134d7de997f7eea49c5c8e160683ce4c8b data/rsimm/recipe/crafting/packing_unpacking/9packed/magnesium_block_to_magnesium_ingot.json
 a993c2fbabea6f689f07b18f898c0ab49c40deb4 data/rsimm/recipe/crafting/packing_unpacking/9packed/magnesium_ingot_to_magnesium_block.json
 88ee033de6ef96082026c4e730b3562f392dae60 data/rsimm/recipe/crafting/packing_unpacking/9packed/magnesium_ingot_to_magnesium_nugget.json
